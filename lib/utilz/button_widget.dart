@@ -1,26 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-    required this.onpress,
-    this.width,
-    this.height
-  });
+  const CustomButton(
+      {super.key, required this.onpress, this.width, this.height, this.title});
+  final String? title;
   final double? width;
-    final double? height;
-    final Function() onpress;
+  final double? height;
+  final Function() onpress;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: height??Adaptive.h(6),
+      height: height ?? Adaptive.h(6),
       child: ElevatedButton(
-        onPressed:onpress,
+        onPressed: onpress,
         style: ElevatedButton.styleFrom(
           backgroundColor: black,
           shape: RoundedRectangleBorder(
@@ -28,8 +24,8 @@ class CustomButton extends StatelessWidget {
           ),
           minimumSize: const Size(double.infinity, 50),
         ),
-        child: const Text(
-          'Continue',
+        child: Text(
+          title ?? 'Continue',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,

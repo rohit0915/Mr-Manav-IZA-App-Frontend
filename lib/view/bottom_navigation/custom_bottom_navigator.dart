@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iza_app/controller/bottom_controller.dart';
 import 'package:iza_app/utilz/colors.dart';
+import 'package:iza_app/view/category_section/category_screen.dart';
 import 'package:iza_app/view/chat_bot_section/chat_bot_screen.dart';
+import 'package:iza_app/view/offer_section/offer_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../login_section/login_screen.dart';
@@ -22,9 +24,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   Widget build(BuildContext context) {
     List<Widget> widgetOptions = [
       LoginScreen(),
+      CategoryScreen(),
       LoginScreen(),
-      LoginScreen(),
-      LoginScreen(),
+      OfferScreen(),
       LoginScreen(),
     ];
 

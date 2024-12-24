@@ -28,7 +28,7 @@ class ChatBotScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/chatbot_icon.png', 
+                  'assets/images/chatbot_icon.png',
                   height: 120,
                   width: 120,
                 ),
@@ -80,9 +80,7 @@ class ChatBotScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    // Handle send message
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Send',
                     style: GoogleFonts.manrope(

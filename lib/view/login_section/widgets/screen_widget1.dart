@@ -143,8 +143,7 @@ class LoginWidget1 extends StatelessWidget {
             ),
           ],
         ),
-       
-
+        buildVspacer(2.h)
       ],
     );
   }
