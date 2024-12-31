@@ -6,6 +6,7 @@ import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/view/category_section/category_screen.dart';
 import 'package:iza_app/view/chat_bot_section/chat_bot_screen.dart';
 import 'package:iza_app/view/offer_section/offer_screen.dart';
+import 'package:iza_app/view/stream/stream_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../login_section/login_screen.dart';
@@ -27,7 +28,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       CategoryScreen(),
       LoginScreen(),
       OfferScreen(),
-      LoginScreen(),
+      StreamScreen(),
     ];
 
     return Scaffold(
@@ -72,12 +73,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     return GestureDetector(
       onTap: () {
         log("Tapped on item: $index");
-        if (index==2) {
-          
-          Get.to(()=>ChatBotScreen());
-        } else {
-          
-        }
+        if (index == 2) {
+          Get.to(() => ChatBotScreen());
+        } else {}
         controller.currentIndex.value = index;
       },
       child: Column(

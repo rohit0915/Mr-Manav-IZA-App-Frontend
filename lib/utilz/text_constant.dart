@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 Widget buildsTextBitter(
     {required String title,
     double? size,
     FontWeight? fontWeight,
     Color? color,
-   
     bool align = false}) {
   return align
       ? Align(
@@ -33,13 +32,11 @@ Widget buildsTextBitter(
         );
 }
 
-
 Widget buildsTextCormarant(
     {required String title,
     double? size,
     FontWeight? fontWeight,
     Color? color,
-   
     bool align = false}) {
   return align
       ? Align(
@@ -65,15 +62,11 @@ Widget buildsTextCormarant(
         );
 }
 
-
-
-
 Widget buildsTextManrope(
     {required String title,
     double? size,
     FontWeight? fontWeight,
     Color? color,
-   
     bool align = false}) {
   return align
       ? Align(
@@ -97,4 +90,22 @@ Widget buildsTextManrope(
               // fontFamily: 'sen',
               color: color ?? Colors.black),
         );
+}
+
+Row headingWidget(String title1, String title2) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      buildsTextBitter(
+          title: title1,
+          size: 24.px,
+          fontWeight: FontWeight.w300,
+          color: Colors.black54),
+      buildsTextBitter(
+          title: title2,
+          size: 14.px,
+          fontWeight: FontWeight.w400,
+          color: Colors.black54),
+    ],
+  );
 }

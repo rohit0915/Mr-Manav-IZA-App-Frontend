@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/app_constants.dart';
+import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/drawer_screen.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
 import 'package:iza_app/view/search_section/search_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -23,7 +25,7 @@ class _OfferScreenState extends State<OfferScreen> {
   Timer? _timer;
 
   PageController controller = PageController();
-
+  GlobalKey<ScaffoldState> keyhome = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -67,6 +69,8 @@ class _OfferScreenState extends State<OfferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: keyhome,
+      drawer: SizedBox(width: Adaptive.w(70), child: DrawerMenu()),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Adaptive.w(2)),
         child: SafeArea(
@@ -78,8 +82,10 @@ class _OfferScreenState extends State<OfferScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                       onTap:(){},
-                      child: Image.asset('assets/images/offerappbar1.png')),
+                        onTap: () {
+                          keyhome.currentState!.openDrawer();
+                        },
+                        child: Image.asset('assets/images/offerappbar1.png')),
                     GestureDetector(
                       onTap: () {
                         Get.to(() => SearchScreen());
@@ -133,30 +139,7 @@ class _OfferScreenState extends State<OfferScreen> {
                       activeDotColor: black),
                 ),
                 buildVspacer(2.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: Adaptive.w(10),
-                      child: Divider(
-                        color: black,
-                      ),
-                    ),
-                    buildHspacer(3.w),
-                    buildsTextBitter(
-                      title: "Deals Of The Day",
-                      size: 24.px,
-                      fontWeight: FontWeight.w300,
-                    ),
-                    buildHspacer(3.w),
-                    SizedBox(
-                      width: Adaptive.w(10),
-                      child: Divider(
-                        color: black,
-                      ),
-                    ),
-                  ],
-                ),
+                mainTitleWidget("Deals Of The Day"),
                 buildVspacer(2.h),
                 dealsOfDay(),
                 buildVspacer(2.h),
@@ -441,6 +424,7 @@ class _OfferScreenState extends State<OfferScreen> {
       ),
     );
   }
+
 
   Container featuredProducMethod() {
     return Container(
