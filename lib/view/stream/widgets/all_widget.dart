@@ -8,6 +8,7 @@ import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/stream/stream_video_section/stream_video_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -154,7 +155,11 @@ class StreamAllWidget extends StatelessWidget {
           buildVspacer(2.h),
           mainTitleWidget("Tutorials"),
           buildVspacer(2.h),
-          Image.asset('assets/images/stream4.png'),
+          GestureDetector(
+             onTap: () {
+               Get.to(()=>StreamVideoScreen());
+             },
+            child: Image.asset('assets/images/stream4.png')),
           buildVspacer(1.h),
           buildsTextBitter(
             title: "Influencer Recomendation",

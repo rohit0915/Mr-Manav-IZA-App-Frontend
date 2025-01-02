@@ -11,6 +11,7 @@ import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/drawer_screen.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
 import 'package:iza_app/view/search_section/search_screen.dart';
+import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -111,7 +112,11 @@ class _OfferScreenState extends State<OfferScreen> {
                       ),
                     ),
                     buildHspacer(2.w),
-                    Image.asset('assets/images/offerappbar2.png'),
+                    GestureDetector(
+                        onTap: () {
+                          Get.to(() => WishlistScreen());
+                        },
+                        child: Image.asset('assets/images/offerappbar2.png')),
                     buildHspacer(2.w),
                     Image.asset('assets/images/offerappbar3.png')
                   ],
@@ -424,7 +429,6 @@ class _OfferScreenState extends State<OfferScreen> {
       ),
     );
   }
-
 
   Container featuredProducMethod() {
     return Container(

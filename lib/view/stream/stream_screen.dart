@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
@@ -55,6 +57,7 @@ class _StreamScreenState extends State<StreamScreen> {
     });
   }
 
+  RxInt selectedIndex = 0.obs;
   @override
   Widget build(BuildContext context) {
     List<String> streamItems = [
@@ -63,7 +66,6 @@ class _StreamScreenState extends State<StreamScreen> {
       "STREAM",
       "UGC WALL",
       "FAQ",
-      ""
     ];
     return Scaffold(
       backgroundColor: white,
@@ -124,19 +126,44 @@ class _StreamScreenState extends State<StreamScreen> {
                 physics: BouncingScrollPhysics(),
                 separatorBuilder: (context, index) => buildHspacer(6.w),
                 itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildsTextManrope(
-                          title: streamItems[index],
-                          size: 15.px,
-                          fontWeight: FontWeight.w600)
-                    ],
-                  );
+                  return Obx(() {
+                    return GestureDetector(
+                      onTap: () {
+                        selectedIndex.value = index;
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Text widget for the title
+                          buildsTextManrope(
+                            title: streamItems[index],
+                            size: 15.px,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          // SizedBox(height: Adaptive.h(1)), // Add spacing
+
+                          SizedBox(
+                            width: _calculateTextWidth(
+                                context,
+                                streamItems[index],
+                                const TextStyle(fontSize: 16.0)),
+                            child: Divider(
+                              thickness: 4,
+                              color: selectedIndex.value == index
+                                  ? black
+                                  : Colors.transparent,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
                 },
                 itemCount: streamItems.length,
               ),
             ),
+
             buildVspacer(2.h),
             Expanded(
               child: PageView(
@@ -150,5 +177,14 @@ class _StreamScreenState extends State<StreamScreen> {
         ),
       ),
     );
+  }
+
+  double _calculateTextWidth(
+      BuildContext context, String text, TextStyle style) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    return textPainter.width;
   }
 }

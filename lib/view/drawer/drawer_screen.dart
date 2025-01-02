@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/about_us_section/about_us_screen.dart';
+import 'package:iza_app/view/drawer/membership/membership_section.dart';
+import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -36,10 +41,15 @@ class DrawerMenu extends StatelessWidget {
                         size: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
-                      buildsTextManrope(
-                        title: "Account",
-                        size: 14.sp,
-                        color: Colors.grey,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => PersonalDetailsScreen());
+                        },
+                        child: buildsTextManrope(
+                          title: "Account",
+                          size: 15.sp,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   ),
@@ -78,11 +88,36 @@ class DrawerMenu extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Adaptive.w(2), vertical: Adaptive.h(1)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          buildsTextManrope(
+                              title: "makeup Vanity", size: 12.px),
+                          buildHspacer(1.h),
+                          Icon(Icons.keyboard_arrow_down_sharp)
+                        ],
+                      ),
+                      buildsTextManrope(
+                          title: "Diamand", size: 10.px, color: grey)
+                    ],
+                  ),
+                ),
                 _buildDrawerItem("Wishlist", "assets/images/drawer2.png"),
                 _buildDrawerItem("Orders", "assets/images/drawer3.png"),
                 _buildDrawerItem(
                     "Loyalty Program", "assets/images/drawer4.png"),
-                _buildDrawerItem("Membership", "assets/images/drawer5.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => MembershipSectionScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Membership", "assets/images/drawer5.png")),
                 _buildDrawerItem(
                     "My Beauty Profile", "assets/images/drawer6.png"),
                 _buildDrawerItem("IZA Wallet", "assets/images/drawer7.png"),
@@ -92,7 +127,13 @@ class DrawerMenu extends StatelessWidget {
                 _buildDrawerItem(
                     "Refer and Earn", "assets/images/drawer11.png"),
                 _buildDrawerItem("Help Center", "assets/images/drawer12.png"),
-                _buildDrawerItem("About", "assets/images/drawer13.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => AboutUsScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "About", "assets/images/drawer13.png")),
                 _buildDrawerItem(
                     "Become a Vendor", "assets/images/drawer14.png"),
                 _buildDrawerItem("Settings", "assets/images/drawer15.png"),
