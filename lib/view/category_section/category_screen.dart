@@ -162,7 +162,7 @@ class CategoryScreen extends StatelessWidget {
                                             padding: EdgeInsets.all(12.sp),
                                             decoration: BoxDecoration(
                                                 color:
-                                                    primary.withOpacity(0.1)),
+                                                    primarys.withOpacity(0.1)),
                                             child: Column(
                                               children: [
                                                 buildsTextManrope(
@@ -173,7 +173,7 @@ class CategoryScreen extends StatelessWidget {
                                                 buildVspacer(1.h),
                                                 Divider(
                                                   color:
-                                                      primary.withOpacity(0.4),
+                                                      primarys.withOpacity(0.4),
                                                 )
                                               ],
                                             ),

@@ -122,14 +122,14 @@ class LoginScreen extends StatelessWidget {
                                 "Edit Number",
                                 style: GoogleFonts.manrope(
                                     fontWeight: FontWeight.w500,
-                                    color: primary,
+                                    color: primarys,
                                     fontSize: 15.px),
                               ),
                               Text(
                                 "Resend OTP ",
                                 style: GoogleFonts.manrope(
                                     fontWeight: FontWeight.w500,
-                                    color: primary,
+                                    color: primarys,
                                     fontSize: 15.px),
                               ),
                             ],

@@ -119,7 +119,7 @@ class _StreamScreenState extends State<StreamScreen> {
                   horizontal: Adaptive.w(2), vertical: Adaptive.h(1)),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: primary.withOpacity(0.12),
+                color: primarys.withOpacity(0.12),
               ),
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,

@@ -462,7 +462,7 @@ class _OfferScreenState extends State<OfferScreen> {
                     decoration: BoxDecoration(
                       color: white,
                       border: Border.all(
-                        color: primary,
+                        color: primarys,
                       ),
                       borderRadius: BorderRadius.circular(8.sp),
                     ),
@@ -470,7 +470,7 @@ class _OfferScreenState extends State<OfferScreen> {
                       child: buildsTextManrope(
                         title: featureProduct[index],
                         size: 13.px,
-                        color: primary,
+                        color: primarys,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

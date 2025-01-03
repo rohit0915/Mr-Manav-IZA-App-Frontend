@@ -84,7 +84,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           Image.asset(
             assetPath,
             color:
-                controller.currentIndex.value == index ? primary : Colors.black,
+                controller.currentIndex.value == index ? primarys : Colors.black,
             // height: 24.sp,
             // width: 24.sp,
           ),

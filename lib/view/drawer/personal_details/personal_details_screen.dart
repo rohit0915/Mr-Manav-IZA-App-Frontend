@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/custom_textfield.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/personal_details/chat_section/chat_screen.dart';
+import 'package:iza_app/view/drawer/personal_details/quiz_section/quiz_section.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PersonalDetailsScreen extends StatelessWidget {
@@ -34,7 +38,9 @@ class PersonalDetailsScreen extends StatelessWidget {
                     left: Adaptive.w(3),
                     bottom: Adaptive.h(2),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => QuizSectionScreen());
+                      },
                       child: Container(
                         padding: EdgeInsets.all(8.sp),
                         decoration: BoxDecoration(
@@ -80,8 +86,13 @@ class PersonalDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-                  buildsTextManrope(
-                      title: "Chat Now >", size: 15.px, color: primary)
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ChatScreen());
+                    },
+                    child: buildsTextManrope(
+                        title: "Chat Now >", size: 15.px, color: primarys),
+                  )
                 ],
               ),
             ),
@@ -90,8 +101,7 @@ class PersonalDetailsScreen extends StatelessWidget {
               onpress: () {},
               title: "Save",
             ),
-                        buildVspacer(4.h),
-
+            buildVspacer(4.h),
           ],
         ),
       ),
