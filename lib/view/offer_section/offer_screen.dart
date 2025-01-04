@@ -121,6 +121,7 @@ class _OfferScreenState extends State<OfferScreen> {
                     Image.asset('assets/images/offerappbar3.png')
                   ],
                 ),
+               
                 SizedBox(
                   height: 200, // Adjust the height as needed
                   child: PageView.builder(

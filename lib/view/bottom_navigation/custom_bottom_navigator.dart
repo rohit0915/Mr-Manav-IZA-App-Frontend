@@ -5,6 +5,7 @@ import 'package:iza_app/controller/bottom_controller.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/view/category_section/category_screen.dart';
 import 'package:iza_app/view/chat_bot_section/chat_bot_screen.dart';
+import 'package:iza_app/view/home_section/home_screen.dart';
 import 'package:iza_app/view/offer_section/offer_screen.dart';
 import 'package:iza_app/view/stream/stream_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,7 +25,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> widgetOptions = [
-      LoginScreen(),
+      HomeScreen(),
       CategoryScreen(),
       LoginScreen(),
       OfferScreen(),
