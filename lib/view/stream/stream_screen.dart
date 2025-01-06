@@ -9,6 +9,7 @@ import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/stream/widgets/all_widget.dart';
+import 'package:iza_app/view/stream/widgets/blog_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StreamScreen extends StatefulWidget {
@@ -130,6 +131,9 @@ class _StreamScreenState extends State<StreamScreen> {
                     return GestureDetector(
                       onTap: () {
                         selectedIndex.value = index;
+                        controller.animateToPage(selectedIndex.value,
+                            duration: Duration(milliseconds: 200),
+                            curve: Curves.bounceIn);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +173,8 @@ class _StreamScreenState extends State<StreamScreen> {
               child: PageView(
                 allowImplicitScrolling: true,
                 children: [
-                  StreamAllWidget(controller: controller, banner: banner)
+                  StreamAllWidget(controller: controller, banner: banner),
+                  BlogsWidget(controller: controller, banner: banner),
                 ],
               ),
             )

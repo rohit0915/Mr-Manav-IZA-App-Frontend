@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
@@ -5,6 +6,7 @@ import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/about_us_section/about_us_screen.dart';
 import 'package:iza_app/view/drawer/membership/membership_section.dart';
+import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -54,7 +56,11 @@ class DrawerMenu extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Image.asset('assets/images/drawer0.png'),
+                  GestureDetector(
+                      onTap: () {
+                        Get.to(() => NotificationScreen());
+                      },
+                      child: Image.asset('assets/images/drawer0.png')),
                 ],
               ),
             ),

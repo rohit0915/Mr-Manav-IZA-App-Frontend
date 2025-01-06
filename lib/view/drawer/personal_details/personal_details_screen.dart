@@ -98,7 +98,9 @@ class PersonalDetailsScreen extends StatelessWidget {
             ),
             buildVspacer(2.h),
             CustomButton(
-              onpress: () {},
+              onpress: () {
+                Get.to(() => QuizSectionScreen());
+              },
               title: "Save",
             ),
             buildVspacer(4.h),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/view/splash_screen/splash_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart';
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-           
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+           scaffoldBackgroundColor: white,
+            // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
           debugShowCheckedModeBanner: false,

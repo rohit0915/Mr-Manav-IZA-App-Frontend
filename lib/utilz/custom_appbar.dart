@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      
+      backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: onBackPressed ?? () => Get.back(),
         icon: Icon(Icons.arrow_back),
@@ -22,7 +22,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: TextStyle(
-          fontSize: 18, // You can adjust this to your responsive font size method
+          fontSize:
+              18, // You can adjust this to your responsive font size method
           fontWeight: FontWeight.w600,
         ),
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
+import 'package:iza_app/view/drawer/personal_details/build_review_complete_section/complete_review_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
@@ -84,7 +86,9 @@ class QuizReviewSectionScreen extends StatelessWidget {
                 buildHspacer(3.w),
                 Expanded(
                   child: CustomButton(
-                    onpress: () {},
+                    onpress: () {
+                      Get.to(() => CompleteReviewOfQuizScreen());
+                    },
                     title: "Next",
                   ),
                 ),
