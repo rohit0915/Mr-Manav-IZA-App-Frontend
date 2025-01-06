@@ -34,14 +34,16 @@ class StreamVideoScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: white),
                       Row(
-                        spacing: 3.w,
+                        // spacing: 3.w,
                         children: [
                           Image.asset(
                             'assets/images/stream_video2.png',
                           ),
+                          buildHspacer(3.w),
                           Image.asset(
                             'assets/images/stream_video3.png',
-                          ),
+                          ),                          buildHspacer(3.w),
+
                           GestureDetector(
                             onTap: () {
                               Get.back();
@@ -72,7 +74,7 @@ class StreamVideoScreen extends StatelessWidget {
                             SizedBox(
                               width: Adaptive.w(60),
                               child: Column(
-                                spacing: 1.h,
+                                // spacing: 1.h,
                                 mainAxisAlignment: MainAxisAlignment
                                     .center, // Center content vertically
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,12 +84,14 @@ class StreamVideoScreen extends StatelessWidget {
                                     size: 19.px,
                                     fontWeight: FontWeight.w500,
                                   ),
+                                  buildVspacer(1.h),
                                   buildsTextManrope(
                                     title: "\$1450 ",
                                     size: 16.px,
                                     align: true,
                                     fontWeight: FontWeight.w500,
-                                  ),
+                                  ),                                  buildVspacer(1.h),
+
                                   Align(
                                       alignment: Alignment.center,
                                       child: Text(
