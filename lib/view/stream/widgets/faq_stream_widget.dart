@@ -149,5 +149,5 @@ class FaqStreamWidget extends StatelessWidget {
     );
   }
 
-function(){}
+functionw(){}
 }
