@@ -15,15 +15,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class StreamAllWidget extends StatelessWidget {
   const StreamAllWidget({
     super.key,
-    required this.controller,
     required this.banner,
   });
 
-  final PageController controller;
   final List<String> banner;
 
   @override
   Widget build(BuildContext context) {
+    PageController controller = PageController();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -150,16 +149,14 @@ class StreamAllWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => buildHspacer(2.w),
                 itemCount: 2),
           ),
-          
-          
           buildVspacer(2.h),
           mainTitleWidget("Tutorials"),
           buildVspacer(2.h),
           GestureDetector(
-             onTap: () {
-               Get.to(()=>StreamVideoScreen());
-             },
-            child: Image.asset('assets/images/stream4.png')),
+              onTap: () {
+                Get.to(() => StreamVideoScreen());
+              },
+              child: Image.asset('assets/images/stream4.png')),
           buildVspacer(1.h),
           buildsTextBitter(
             title: "Influencer Recomendation",
@@ -212,7 +209,7 @@ class StreamAllWidget extends StatelessWidget {
               ),
             ),
           ),
-           SizedBox(
+          SizedBox(
             height: 295.px,
             child: ListView.separated(
                 shrinkWrap: true,
@@ -241,8 +238,7 @@ class StreamAllWidget extends StatelessWidget {
                               align: true,
                               fontWeight: FontWeight.w500),
                           buildsTextManrope(
-                            title:
-                                "Bollywood Makeup Stylish and Influencer",
+                            title: "Bollywood Makeup Stylish and Influencer",
                             size: 10.px,
                             align: true,
                             fontWeight: FontWeight.w400,
@@ -255,7 +251,6 @@ class StreamAllWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => buildHspacer(2.w),
                 itemCount: 2),
           ),
-          
         ],
       ),
     );

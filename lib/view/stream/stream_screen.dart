@@ -10,6 +10,9 @@ import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/stream/widgets/all_widget.dart';
 import 'package:iza_app/view/stream/widgets/blog_widget.dart';
+import 'package:iza_app/view/stream/widgets/faq_stream_widget.dart';
+import 'package:iza_app/view/stream/widgets/stream_widget.dart';
+import 'package:iza_app/view/stream/widgets/ugc_wall_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StreamScreen extends StatefulWidget {
@@ -24,6 +27,7 @@ class _StreamScreenState extends State<StreamScreen> {
   Timer? _timer;
 
   PageController controller = PageController();
+  PageController controller2 = PageController();
 
   void initState() {
     super.initState();
@@ -131,7 +135,7 @@ class _StreamScreenState extends State<StreamScreen> {
                     return GestureDetector(
                       onTap: () {
                         selectedIndex.value = index;
-                        controller.animateToPage(selectedIndex.value,
+                        controller2.animateToPage(selectedIndex.value,
                             duration: Duration(milliseconds: 200),
                             curve: Curves.bounceIn);
                       },
@@ -171,10 +175,15 @@ class _StreamScreenState extends State<StreamScreen> {
             buildVspacer(2.h),
             Expanded(
               child: PageView(
+                physics: NeverScrollableScrollPhysics(),
+                controller: controller2,
                 allowImplicitScrolling: true,
                 children: [
-                  StreamAllWidget(controller: controller, banner: banner),
-                  BlogsWidget(controller: controller, banner: banner),
+                  StreamAllWidget(banner: banner),
+                  BlogsWidget(banner: banner),
+                  StreamWidget(),
+                  UgcWallWidget(),
+                  FaqStreamWidget()
                 ],
               ),
             )
