@@ -131,7 +131,8 @@ class FaqStreamWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ), Positioned(
+          ),
+           Positioned(
             right: Adaptive.w(2),
             bottom: Adaptive.h(2),
             child: CircleAvatar(
@@ -147,4 +148,6 @@ class FaqStreamWidget extends StatelessWidget {
       ),
     );
   }
+
+function(){}
 }
