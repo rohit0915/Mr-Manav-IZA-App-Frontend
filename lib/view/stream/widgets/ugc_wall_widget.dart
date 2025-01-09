@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/stream/share_post_section/share_post_scree.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UgcWallWidget extends StatelessWidget {
@@ -202,12 +204,17 @@ class UgcWallWidget extends StatelessWidget {
           Positioned(
             right: Adaptive.w(2),
             bottom: Adaptive.h(2),
-            child: CircleAvatar(
-              radius: 10.w,
-              backgroundColor: Colors.pinkAccent,
-              child: Icon(
-                Icons.add,
-                color: white,
+            child: GestureDetector(
+              onTap: () {
+                Get.to(() => SharePostScreen());
+              },
+              child: CircleAvatar(
+                radius: 10.w,
+                backgroundColor: Colors.pinkAccent,
+                child: Icon(
+                  Icons.add,
+                  color: white,
+                ),
               ),
             ),
           )

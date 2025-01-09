@@ -4,6 +4,7 @@ import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/category_section/widgets/list_of_category.dart';
+import 'package:iza_app/view/product_listing_section/product_listing_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -129,7 +130,7 @@ class CategoryScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                isClicked2.value = !isClicked2.value;
+                                Get.to(()=>ProductListScreen());
                               },
                               child: SizedBox(
                                 height: Adaptive.h(7),
@@ -146,7 +147,12 @@ class CategoryScreen extends StatelessWidget {
                                         size: 17.px,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                      Icon(Icons.keyboard_arrow_down),
+                                      GestureDetector(
+                                         onTap:(){
+                                                                          isClicked2.value = !isClicked2.value;
+
+                                         },
+                                        child: Icon(Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ),
