@@ -5,8 +5,11 @@ import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/about_us_section/about_us_screen.dart';
+import 'package:iza_app/view/drawer/about_us_section/privacy_plicy_policy/privacy_policy_screen.dart';
+import 'package:iza_app/view/drawer/about_us_section/terms_and_condition/terms_and_condition.dart';
 import 'package:iza_app/view/drawer/membership/membership_section.dart';
 import 'package:iza_app/view/drawer/notification/notification_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -114,7 +117,12 @@ class DrawerMenu extends StatelessWidget {
                   ),
                 ),
                 _buildDrawerItem("Wishlist", "assets/images/drawer2.png"),
-                _buildDrawerItem("Orders", "assets/images/drawer3.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(() => OrdersScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Orders", "assets/images/drawer3.png")),
                 _buildDrawerItem(
                     "Loyalty Program", "assets/images/drawer4.png"),
                 GestureDetector(
@@ -185,15 +193,27 @@ class DrawerMenu extends StatelessWidget {
                         size: 12.sp,
                         color: Colors.grey,
                       ),
-                      buildsTextManrope(
-                        title: "T & C",
-                        size: 12.sp,
-                        color: Colors.grey,
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                          Get.to(() => TermsAndConditionScreen());
+                        },
+                        child: buildsTextManrope(
+                          title: "T & C",
+                          size: 12.sp,
+                          color: Colors.grey,
+                        ),
                       ),
-                      buildsTextManrope(
-                        title: "Privacy Policy",
-                        size: 12.sp,
-                        color: Colors.grey,
+                      GestureDetector(
+                        onTap:(){
+                           Get.back();
+                          Get.to(() => PrivacyPolicyScreen());
+                        },
+                        child: buildsTextManrope(
+                          title: "Privacy Policy",
+                          size: 12.sp,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   ),

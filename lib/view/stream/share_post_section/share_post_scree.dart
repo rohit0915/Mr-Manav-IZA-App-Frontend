@@ -399,5 +399,6 @@ class SharePostScreen extends StatelessWidget {
         );
       },
     );
+
   }
 }

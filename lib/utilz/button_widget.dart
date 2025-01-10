@@ -11,11 +11,14 @@ class CustomButton extends StatelessWidget {
     this.title,
     this.color,
     this.borderColor,
+    this.textSize
   });
 
   final String? title;
   final double? width;
   final double? height;
+    final double? textSize;
+
   final Function() onpress;
   final Color? color;
   final Color? textColor;
@@ -40,7 +43,7 @@ class CustomButton extends StatelessWidget {
           title ?? 'Continue',
           style: TextStyle(
             color: textColor ?? Colors.white,
-            fontSize: 16.sp, // Responsive font size using responsive_sizer
+            fontSize:textSize?? 16.sp, 
             fontWeight: FontWeight.bold,
           ),
         ),

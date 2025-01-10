@@ -6,13 +6,13 @@ import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class AboutUsScreen extends StatelessWidget {
-  const AboutUsScreen({super.key});
+class PrivacyPolicyScreen extends StatelessWidget {
+  const PrivacyPolicyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "About Us"),
+      appBar: CustomAppBar(title: "Privacy Policy"),
       body: Padding(
         padding: normalPadding,
         child: Column(
