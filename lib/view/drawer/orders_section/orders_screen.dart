@@ -26,7 +26,7 @@ class OrdersScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Card(
                       color: white,
-                      elevation: 3,
+                      elevation: 1,
                       surfaceTintColor: white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

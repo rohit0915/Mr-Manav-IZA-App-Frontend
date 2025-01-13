@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_reason_section/cancel_order_reason_section.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CancelOrderItemDisplayingScreen extends StatelessWidget {
@@ -95,7 +97,9 @@ class CancelOrderItemDisplayingScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: Adaptive.w(5), vertical: Adaptive.h(2)),
             child: CustomButton(
-              onpress: () {},
+              onpress: () {
+                Get.to(() => CancelReasonScreen());
+              },
             ),
           ),
         ],

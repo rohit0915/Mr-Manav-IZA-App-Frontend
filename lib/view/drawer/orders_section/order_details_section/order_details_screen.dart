@@ -9,8 +9,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({Key? key}) : super(key: key);
+  OrderDetailsScreen({super.key});
 
+  RxBool isClicked = false.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,7 @@ class OrderDetailsScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.px),
+        padding: normalPadding,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,9 +43,24 @@ class OrderDetailsScreen extends StatelessWidget {
               SizedBox(height: 2.h),
               _buildShippingAddress(),
               SizedBox(height: 2.h),
-              _buildPreparingItem(),
+              _buildPreparingItem(context),
               SizedBox(height: 2.h),
               _buildPaymentDetails(),
+              Obx(() {
+                return isClicked.value
+                    ? Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: Adaptive.w(5)),
+                        child: CustomButton(
+                          title: "Need Help ?",
+                          color: Colors.white,
+                          textColor: Colors.black,
+                          borderColor: Colors.black,
+                          onpress: () {},
+                        ),
+                      )
+                    : SizedBox();
+              }),
             ],
           ),
         ),
@@ -53,68 +69,73 @@ class OrderDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildOrderInfo() {
-    return Container(
-      padding: EdgeInsets.all(16.px),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 6,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildsTextManrope(
-                  title: "ORDER NUMBER",
-                  color: grey,
-                  fontWeight: FontWeight.w600,
-                  size: 13.px),
-              buildsTextManrope(
-                  title: "1246585",
-                  color: black,
-                  fontWeight: FontWeight.w700,
-                  size: 13.px),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildsTextManrope(
-                  title: "PLACED",
-                  color: grey,
-                  fontWeight: FontWeight.w600,
-                  size: 13.px),
-              buildsTextManrope(
-                  title: "Tue, 3 Dec",
-                  color: black,
-                  fontWeight: FontWeight.w700,
-                  size: 13.px),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildsTextManrope(
-                  title: "TOTAL",
-                  color: grey,
-                  fontWeight: FontWeight.w600,
-                  size: 13.px),
-              buildsTextManrope(
-                  title: "₹159",
-                  color: black,
-                  fontWeight: FontWeight.w700,
-                  size: 13.px),
-            ],
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        isClicked.value = true;
+      },
+      child: Container(
+        padding: EdgeInsets.all(16.px),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 6,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildsTextManrope(
+                    title: "ORDER NUMBER",
+                    color: grey,
+                    fontWeight: FontWeight.w600,
+                    size: 13.px),
+                buildsTextManrope(
+                    title: "1246585",
+                    color: black,
+                    fontWeight: FontWeight.w700,
+                    size: 13.px),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildsTextManrope(
+                    title: "PLACED",
+                    color: grey,
+                    fontWeight: FontWeight.w600,
+                    size: 13.px),
+                buildsTextManrope(
+                    title: "Tue, 3 Dec",
+                    color: black,
+                    fontWeight: FontWeight.w700,
+                    size: 13.px),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildsTextManrope(
+                    title: "TOTAL",
+                    color: grey,
+                    fontWeight: FontWeight.w600,
+                    size: 13.px),
+                buildsTextManrope(
+                    title: "₹159",
+                    color: black,
+                    fontWeight: FontWeight.w700,
+                    size: 13.px),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -164,7 +185,7 @@ class OrderDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPreparingItem() {
+  Widget _buildPreparingItem(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.px),
       decoration: BoxDecoration(
@@ -213,10 +234,22 @@ class OrderDetailsScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     buildsTextManrope(
-                      title: "Delivery by Wed, 4 Dec\nQty - 1",
+                      title: "Delivery by Wed, 4 Dec",
                       size: 11.px,
                       align: true,
                       color: Colors.grey,
+                    ),
+                    buildVspacer(1.h),
+                    GestureDetector(
+                      onTap: () {
+                        selectQuantityBottom(context);
+                      },
+                      child: buildsTextManrope(
+                        title: "Qty - 1",
+                        size: 11.px,
+                        align: true,
+                        color: Colors.black87,
+                      ),
                     ),
                   ],
                 ),
@@ -224,30 +257,116 @@ class OrderDetailsScreen extends StatelessWidget {
             ],
           ),
           SizedBox(height: 2.h),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                  title: "Need Help ?",
-                  color: Colors.white,
-                  textColor: Colors.black,
-                  borderColor: Colors.black,
-                  onpress: () {},
-                ),
-              ),
-              SizedBox(width: 2.w),
-              Expanded(
-                child: CustomButton(
-                  title: "Cancel Item",
-                  onpress: () {
-                    Get.to(()=>CancelOrderItemDisplayingScreen());
-                  },
-                ),
-              ),
-            ],
-          ),
+          Obx(() {
+            return isClicked.value
+                ? Column(
+                    children: [
+                      CustomButton(
+                        title: "Track Order",
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        borderColor: Colors.black,
+                        onpress: () {},
+                      ),
+                      buildVspacer(2.h),
+                      CustomButton(
+                        title: "Download Invoice",
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        borderColor: Colors.black,
+                        onpress: () {},
+                      ),
+                    ],
+                  )
+                : Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          title: "Need Help ?",
+                          color: Colors.white,
+                          textColor: Colors.black,
+                          borderColor: Colors.black,
+                          onpress: () {},
+                        ),
+                      ),
+                      SizedBox(width: 2.w),
+                      Expanded(
+                        child: CustomButton(
+                          title: "Cancel Item",
+                          onpress: () {
+                            Get.to(() => CancelOrderItemDisplayingScreen());
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+          }),
         ],
       ),
+    );
+  }
+
+  void selectQuantityBottom(BuildContext context) {
+    List<String> sortList = [
+      "1",
+      "2",
+      "3",
+      "4",
+    ];
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16),
+          height: 300,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildsTextManrope(
+                  title: "Select Quantity",
+                  size: 19.px,
+                  fontWeight: FontWeight.w600,
+                  align: true),
+              ...List.generate(
+                sortList.length,
+                (index) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.all(0),
+                    leading: CircleAvatar(
+                      radius: Adaptive.w(3),
+                      backgroundColor: black,
+                      child: Center(
+                        child: CircleAvatar(
+                          radius: 2.5.w,
+                          backgroundColor: white,
+                          child: Center(
+                            child: CircleAvatar(
+                              radius: Adaptive.w(1.6),
+                              backgroundColor: index == 0 ? primarys : grey,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: buildsTextManrope(
+                        title: sortList[index],
+                        size: 15.px,
+                        align: true,
+                        fontWeight: FontWeight.w500),
+                    onTap: () {
+                      // Handle Sort by Popularity
+                      Navigator.pop(context); // Close the bottom sheet
+                    },
+                  );
+                },
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 

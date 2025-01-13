@@ -96,6 +96,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
+           
             buildVspacer(2.h),
             CustomButton(
               onpress: () {

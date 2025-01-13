@@ -10,6 +10,7 @@ import 'package:iza_app/view/drawer/about_us_section/terms_and_condition/terms_a
 import 'package:iza_app/view/drawer/membership/membership_section.dart';
 import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
+import 'package:iza_app/view/drawer/payment_section/payment_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -136,7 +137,13 @@ class DrawerMenu extends StatelessWidget {
                     "My Beauty Profile", "assets/images/drawer6.png"),
                 _buildDrawerItem("IZA Wallet", "assets/images/drawer7.png"),
                 _buildDrawerItem("Address", "assets/images/drawer8.png"),
-                _buildDrawerItem("Payment", "assets/images/drawer9.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => PaymentScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Payment", "assets/images/drawer9.png")),
                 _buildDrawerItem("Coupons", "assets/images/drawer10.png"),
                 _buildDrawerItem(
                     "Refer and Earn", "assets/images/drawer11.png"),
@@ -205,8 +212,8 @@ class DrawerMenu extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap:(){
-                           Get.back();
+                        onTap: () {
+                          Get.back();
                           Get.to(() => PrivacyPolicyScreen());
                         },
                         child: buildsTextManrope(

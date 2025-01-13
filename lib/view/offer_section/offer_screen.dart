@@ -542,4 +542,5 @@ class _OfferScreenState extends State<OfferScreen> {
       ),
     );
   }
+
 }

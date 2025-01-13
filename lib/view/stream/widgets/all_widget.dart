@@ -100,6 +100,7 @@ class StreamAllWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => buildHspacer(2.w),
                 itemCount: 2),
           ),
+         
           buildVspacer(3.h),
           Text(
             "Your Looks, Our Products",
@@ -196,6 +197,7 @@ class StreamAllWidget extends StatelessWidget {
               itemCount: 4,
             ),
           ),
+         
           buildVspacer(2.h),
           Align(
             alignment: Alignment.centerLeft,
@@ -251,6 +253,8 @@ class StreamAllWidget extends StatelessWidget {
                 separatorBuilder: (context, index) => buildHspacer(2.w),
                 itemCount: 2),
           ),
+        
+        
         ],
       ),
     );
