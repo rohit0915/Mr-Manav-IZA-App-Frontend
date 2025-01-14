@@ -8,11 +8,13 @@ import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/cart/cart_screen.dart';
 import 'package:iza_app/view/drawer/drawer_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/chat_section/chat_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/quiz_section/quiz_section.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
 import 'package:iza_app/view/search_section/search_screen.dart';
+import 'package:iza_app/view/stream/stream_video_section/stream_video_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -120,7 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: Image.asset('assets/images/offerappbar2.png')),
                   buildHspacer(2.w),
-                  Image.asset('assets/images/offerappbar3.png'),
+                  GestureDetector(
+                      onTap: () {
+                        Get.to(() => CartScreen());
+                      },
+                      child: Image.asset('assets/images/offerappbar3.png')),
                 ],
               ),
               buildVspacer(2.h),
@@ -142,6 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     buildVspacer(2.h),
                     mainTitleWidget("Categories"),
+                    buildVspacer(2.h),
                     _gridviewCategoryMethod(),
                     buildVspacer(2.h),
                     buildsTextBitter(
@@ -150,11 +157,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       align: true,
                       fontWeight: FontWeight.w300,
                     ),
+                    buildVspacer(2.h),
                     dealsOfDay(),
                     buildVspacer(2.h),
                     featuredProducMethod(),
                     buildVspacer(2.h),
                     Image.asset('assets/images/offer_poster.png'),
+                    buildVspacer(2.h),
                     buildsTextBitter(
                       title: "Offers You will Love",
                       size: 24.px,
@@ -185,10 +194,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: 3,
                       ),
                     ),
+                    buildVspacer(2.h),
                     mainTitleWidget("Iza Stream"),
+                    buildVspacer(2.h),
                     GestureDetector(
                         onTap: () {
-                          // Get.to(() => StreamVideoScreen());
+                          Get.to(() => StreamVideoScreen());
                         },
                         child: Image.asset('assets/images/stream4.png')),
                     buildVspacer(2.h),

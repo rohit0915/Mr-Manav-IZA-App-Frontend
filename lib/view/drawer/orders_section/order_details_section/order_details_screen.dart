@@ -5,12 +5,13 @@ import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_item_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/order_details_section/widgets/order_details_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  OrderDetailsScreen({super.key});
-
+  OrderDetailsScreen({super.key, required this.index});
+  final int index;
   RxBool isClicked = false.obs;
   @override
   Widget build(BuildContext context) {
@@ -36,34 +37,95 @@ class OrderDetailsScreen extends StatelessWidget {
       body: Padding(
         padding: normalPadding,
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildOrderInfo(),
-              SizedBox(height: 2.h),
-              _buildShippingAddress(),
-              SizedBox(height: 2.h),
-              _buildPreparingItem(context),
-              SizedBox(height: 2.h),
-              _buildPaymentDetails(),
-              Obx(() {
-                return isClicked.value
-                    ? Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: Adaptive.w(5)),
-                        child: CustomButton(
-                          title: "Need Help ?",
-                          color: Colors.white,
-                          textColor: Colors.black,
-                          borderColor: Colors.black,
-                          onpress: () {},
-                        ),
+            child: index == 0
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildOrderInfo(),
+                      SizedBox(height: 2.h),
+                      _buildShippingAddress(),
+                      SizedBox(height: 2.h),
+                      _buildPreparingItem(context),
+                      SizedBox(height: 2.h),
+                      _buildPaymentDetails(),
+                      Obx(() {
+                        return isClicked.value
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Adaptive.w(5)),
+                                child: CustomButton(
+                                  title: "Need Help ?",
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  borderColor: Colors.black,
+                                  onpress: () {},
+                                ),
+                              )
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Adaptive.w(5)),
+                                child: CustomButton(
+                                  title: "Cancel Order",
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  borderColor: Colors.black,
+                                  onpress: () {},
+                                ),
+                              );
+                      }),
+                    ],
+                  )
+                : index == 1
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildOrderInfo(),
+                          SizedBox(height: 2.h),
+                          _buildShippingAddress(),
+                          SizedBox(height: 2.h),
+                          _buildPreparingCancelItem(context),
+                          SizedBox(height: 2.h),
+                          _buildPaymentDetails(),
+                        ],
                       )
-                    : SizedBox();
-              }),
-            ],
-          ),
-        ),
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildOrderInfo(),
+                          SizedBox(height: 2.h),
+                          _buildShippingAddress(),
+                          SizedBox(height: 2.h),
+                          buildprepareDelivered(context),
+                          SizedBox(height: 2.h),
+                          _buildPaymentDetails(),
+                          buildVspacer(2.h),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  title: "Need Help ?",
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  borderColor: Colors.black,
+                                  onpress: () {},
+                                  textSize: 15.sp,
+                                ),
+                              ),
+                              SizedBox(width: 2.w),
+                              Expanded(
+                                child: CustomButton(
+                                  title: "Download Invoices",
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  borderColor: Colors.black,
+                                  textSize: 15.sp,
+                                  onpress: () {},
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
       ),
     );
   }
@@ -294,13 +356,99 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: CustomButton(
                           title: "Cancel Item",
                           onpress: () {
-                            Get.to(() => CancelOrderItemDisplayingScreen());
+                            Get.to(() => CancelOrderItemDisplayingScreen(
+                                  title: "Cancel Item",
+                                ));
                           },
                         ),
                       ),
                     ],
                   );
           }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPreparingCancelItem(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.px),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 6,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildsTextManrope(
+            title: "Cancelled",
+            size: 15.px,
+            fontWeight: FontWeight.bold,
+          ),
+          SizedBox(height: 2.h),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 8.h,
+                width: 8.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/orderdetails1.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 4.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildsTextManrope(
+                      title: "Streax Lorem ipsum dolor sit amet",
+                      size: 12.px,
+                      align: true,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    buildsTextManrope(
+                      title: "Delivery by Wed, 4 Dec",
+                      size: 11.px,
+                      align: true,
+                      color: Colors.grey,
+                    ),
+                    buildVspacer(1.h),
+                    GestureDetector(
+                      onTap: () {
+                        selectQuantityBottom(context);
+                      },
+                      child: buildsTextManrope(
+                        title: "Qty - 1",
+                        size: 11.px,
+                        align: true,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 2.h),
+          CustomButton(
+            title: "Need Help ?",
+            color: Colors.white,
+            textColor: Colors.black,
+            borderColor: Colors.black,
+            onpress: () {},
+          ),
         ],
       ),
     );

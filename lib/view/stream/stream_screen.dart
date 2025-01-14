@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:iza_app/view/drawer/drawer_screen.dart';
+import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/app_constants.dart';
@@ -16,7 +16,7 @@ import 'package:iza_app/view/stream/widgets/ugc_wall_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class StreamScreen extends StatefulWidget {
-  StreamScreen({super.key});
+  const StreamScreen({super.key});
 
   @override
   State<StreamScreen> createState() => _StreamScreenState();
@@ -77,6 +77,7 @@ class _StreamScreenState extends State<StreamScreen> {
       appBar: AppBar(
         backgroundColor: white,
         surfaceTintColor: white,
+
         leading: GestureDetector(
             onTap: () {
               keyhome.currentState!.openDrawer();
@@ -86,7 +87,11 @@ class _StreamScreenState extends State<StreamScreen> {
         actions: [
           Icon(Icons.search),
           buildHspacer(2.w),
-          Image.asset('assets/images/offerappbar2.png'),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => WishlistScreen());
+              },
+              child: Image.asset('assets/images/offerappbar2.png')),
           buildHspacer(2.w),
           Image.asset('assets/images/offerappbar3.png'),
           buildHspacer(2.w),
@@ -95,6 +100,7 @@ class _StreamScreenState extends State<StreamScreen> {
         // backgroundColor: white,
         // surfaceTintColor: white,
       ),
+      drawer: SizedBox(width: Adaptive.w(70), child: DrawerMenu()),
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Adaptive.w(2), vertical: Adaptive.h(1)),

@@ -13,6 +13,11 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> ordersStatusList = [
+      "Arriving by tomorrow",
+      "Cancelled",
+      "Delivered on 4th dec"
+    ];
     return Scaffold(
       appBar: CustomAppBar(title: "My Orders"),
       body: Padding(
@@ -54,7 +59,9 @@ class OrdersScreen extends StatelessWidget {
                                 ),
                                 CustomButton(
                                   onpress: () {
-                                    Get.to(() => OrderDetailsScreen());
+                                    Get.to(() => OrderDetailsScreen(
+                                          index: index,
+                                        ));
                                   },
                                   title: "Order Details",
                                   width: Adaptive.w(35),
@@ -80,10 +87,13 @@ class OrdersScreen extends StatelessWidget {
                                         color: grey.withOpacity(0.4)),
                                     buildVspacer(1.h),
                                     buildsTextManrope(
-                                        title: "Arriving by tomorrow ",
+                                        title: ordersStatusList[index],
                                         size: 15.px,
                                         fontWeight: FontWeight.w600,
-                                        color: black)
+                                        color: ordersStatusList[index] ==
+                                                "Cancelled"
+                                            ? Colors.red
+                                            : black)
                                   ],
                                 )
                               ],
@@ -94,7 +104,7 @@ class OrdersScreen extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (context, index) => buildVspacer(2.h),
-                  itemCount: 4),
+                  itemCount: ordersStatusList.length),
             ),
             Container(
               height: 14.h,

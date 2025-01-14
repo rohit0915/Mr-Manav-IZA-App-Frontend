@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 const white=Colors.white;
+const background=Color(0xffffffff);
 const black=Colors.black;
 const primarys=Color(0xffF8069D);
 const textFieldColor=Color(0xffECECEC);

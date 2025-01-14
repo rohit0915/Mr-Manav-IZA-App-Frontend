@@ -9,12 +9,12 @@ import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CancelOrderItemDisplayingScreen extends StatelessWidget {
-  const CancelOrderItemDisplayingScreen({super.key});
-
+  const CancelOrderItemDisplayingScreen({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Return Item"),
+      appBar: CustomAppBar(title: title),
       body: Padding(
         padding: normalPadding,
         child: Column(
@@ -98,7 +98,15 @@ class CancelOrderItemDisplayingScreen extends StatelessWidget {
                 horizontal: Adaptive.w(5), vertical: Adaptive.h(2)),
             child: CustomButton(
               onpress: () {
-                Get.to(() => CancelReasonScreen());
+                if (title == "Cancel Item") {
+                  Get.to(() => CancelReasonScreen(
+                        isCancel: true,
+                      ));
+                } else {
+                     Get.to(() => CancelReasonScreen(
+                        isCancel: false,
+                      ));
+                }
               },
             ),
           ),

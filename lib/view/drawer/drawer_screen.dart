@@ -12,6 +12,7 @@ import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/payment_section/payment_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
+import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -117,7 +118,13 @@ class DrawerMenu extends StatelessWidget {
                     ],
                   ),
                 ),
-                _buildDrawerItem("Wishlist", "assets/images/drawer2.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => WishlistScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Wishlist", "assets/images/drawer2.png")),
                 GestureDetector(
                     onTap: () {
                       Get.to(() => OrdersScreen());

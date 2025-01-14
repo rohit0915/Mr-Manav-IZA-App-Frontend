@@ -23,6 +23,7 @@ class StreamVideoScreen extends StatelessWidget {
                   Image.asset(
                     'assets/images/stream_video1.png',
                     height: Adaptive.h(100),
+                    width: Adaptive.w(100),
                     fit: BoxFit.fill,
                   ),
                   Row(

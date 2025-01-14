@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_reason_section/canceled_item_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CancelReasonScreen extends StatefulWidget {
+  CancelReasonScreen({required this.isCancel});
+
+  final bool isCancel;
   @override
   _CancelReasonScreenState createState() => _CancelReasonScreenState();
 }
@@ -122,6 +127,9 @@ class _CancelReasonScreenState extends State<CancelReasonScreen> {
                       content: Text("Please fill all fields."),
                     ));
                   } else {
+                    Get.to(() => CanceledItemScreen(
+                          isCancelled: widget.isCancel,
+                        ));
                     // Submit action
                     print("Reason: $_selectedReason");
                     print("Comments: ${_commentsController.text}");
