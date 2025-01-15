@@ -12,6 +12,7 @@ import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/payment_section/payment_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
+import 'package:iza_app/view/drawer/wallet_section/wallet_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -127,6 +128,8 @@ class DrawerMenu extends StatelessWidget {
                         "Wishlist", "assets/images/drawer2.png")),
                 GestureDetector(
                     onTap: () {
+                      Get.back();
+
                       Get.to(() => OrdersScreen());
                     },
                     child: _buildDrawerItem(
@@ -142,7 +145,13 @@ class DrawerMenu extends StatelessWidget {
                         "Membership", "assets/images/drawer5.png")),
                 _buildDrawerItem(
                     "My Beauty Profile", "assets/images/drawer6.png"),
-                _buildDrawerItem("IZA Wallet", "assets/images/drawer7.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => IzaWalletScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "IZA Wallet", "assets/images/drawer7.png")),
                 _buildDrawerItem("Address", "assets/images/drawer8.png"),
                 GestureDetector(
                     onTap: () {

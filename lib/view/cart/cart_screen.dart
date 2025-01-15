@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iza_app/controller/cart_controller.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/cart/coupon_section/coupon_screen.dart';
+import 'package:iza_app/view/cart/free_gift_section/free_gift_section_screen.dart';
+import 'package:iza_app/view/cart/gift_box_section/gift_box_screen.dart';
+import 'package:iza_app/view/cart/widgets/cart_section_widgets.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
-
+  CartScreen({super.key});
+  final cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,52 +27,100 @@ class CartScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _buildGiftMethod(),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(() => FreeGiftScreen());
+                  },
+                  child: _buildGiftMethod()),
               buildVspacer(2.h),
-              cartItemMethod(),
+              cartItemMethod(context),
               buildVspacer(2.h),
-              Card(
-                color: white,
-                elevation: 3,
-                shadowColor: Colors.black38,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/images/cart3.png'),
-                      buildHspacer(3.w),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          buildsTextManrope(title: "Coupons & Offers"),
-                          buildVspacer(1.h),
-                          buildsTextManrope(
-                              title: "Collect now & save extra",
-                              size: 13.px,
-                              fontWeight: FontWeight.w500),
-                        ],
-                      )
-                    ],
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => CouponScreen());
+                },
+                child: Card(
+                  color: white,
+                  elevation: 3,
+                  shadowColor: Colors.black38,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset('assets/images/cart3.png'),
+                        buildHspacer(3.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            buildsTextManrope(title: "Coupons & Offers"),
+                            buildVspacer(1.h),
+                            buildsTextManrope(
+                                title: "Collect now & save extra",
+                                size: 13.px,
+                                fontWeight: FontWeight.w500),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
               buildVspacer(2.h),
-              Card(
-                color: white,
-                elevation: 3,
-                shadowColor: Colors.black38,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/images/cart1.png'),
-                      buildHspacer(3.w),
-                      buildsTextManrope(title: "Coupons & Offers")
-                    ],
-                  ),
-                ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => GiftSectionscreen());
+                },
+                child: Obx(() {
+                  return cartController.isCartAddGift.value
+                      ? Card(
+                          color: white,
+                          elevation: 3,
+                          shadowColor: Colors.black38,
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  'assets/images/cart1.png',
+                                  color: Colors.green,
+                                ),
+                                buildHspacer(3.w),
+                                buildsTextManrope(title: "Gift Box added"),
+                                Spacer(),
+                                TextButton(
+                                    onPressed: () {
+                                      cartController.isCartAddGift.value =
+                                          false;
+                                    },
+                                    child: buildsTextManrope(
+                                        title: "Delete",
+                                        size: 15.px,
+                                        fontWeight: FontWeight.w500,
+                                        color: primarys))
+                              ],
+                            ),
+                          ),
+                        )
+                      : Card(
+                          color: white,
+                          elevation: 3,
+                          shadowColor: Colors.black38,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset('assets/images/cart1.png'),
+                                buildHspacer(3.w),
+                                buildsTextManrope(
+                                    title: "Add a Gift Box for ₹ 100")
+                              ],
+                            ),
+                          ),
+                        );
+                }),
               ),
               buildVspacer(2.h),
               _buildPaymentDetails(),
@@ -112,6 +165,52 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: Obx(() {
+        return cartController.isCartAddGift.value
+            ? SizedBox(
+                width: Adaptive.w(100),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Divider(
+                        thickness: 2,
+                        color: Colors.grey.withOpacity(0.2),
+                      ),
+                      buildVspacer(2.h),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              buildsTextManrope(
+                                  title: "₹ 150",
+                                  size: 19.px,
+                                  fontWeight: FontWeight.w600),
+                              buildVspacer(1.h),
+                              buildsTextManrope(
+                                  title: "Grand Total",
+                                  size: 18.px,
+                                  fontWeight: FontWeight.w600),
+                            ],
+                          ),
+                          buildHspacer(5.w),
+                          Expanded(
+                            child: CustomButton(
+                              onpress: () {},
+                              title: "Proceed to pay",
+                            ),
+                          )
+                        ],
+                      ),
+                      buildVspacer(1.h),
+                    ],
+                  ),
+                ),
+              )
+            : SizedBox();
+      }),
     );
   }
 
@@ -256,7 +355,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  Card cartItemMethod() {
+  Card cartItemMethod(BuildContext context) {
     return Card(
       surfaceTintColor: white,
       color: white,
@@ -308,7 +407,7 @@ class CartScreen extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // selectQuantityBottom(context);
+                              selectQuantityBottom(context);
                             },
                             child: IntrinsicWidth(
                               child: Container(

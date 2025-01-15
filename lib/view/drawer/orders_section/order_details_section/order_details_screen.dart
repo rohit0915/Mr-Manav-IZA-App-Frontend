@@ -4,7 +4,9 @@ import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/orders_section/help_centre_section/help_centre_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_item_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/order_details_section/track_order_of_arriving/arriving_track_order.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/widgets/order_details_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +60,9 @@ class OrderDetailsScreen extends StatelessWidget {
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   borderColor: Colors.black,
-                                  onpress: () {},
+                                  onpress: () {
+                                    Get.to(() => HelpCenterScreen());
+                                  },
                                 ),
                               )
                             : Padding(
@@ -107,7 +111,9 @@ class OrderDetailsScreen extends StatelessWidget {
                                   color: Colors.white,
                                   textColor: Colors.black,
                                   borderColor: Colors.black,
-                                  onpress: () {},
+                                  onpress: () {
+                                    Get.to(() => HelpCenterScreen());
+                                  },
                                   textSize: 15.sp,
                                 ),
                               ),
@@ -328,7 +334,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         color: Colors.white,
                         textColor: Colors.black,
                         borderColor: Colors.black,
-                        onpress: () {},
+                        onpress: () {
+                          Get.to(() => ArrivingTrackOrderScreen());
+                        },
                       ),
                       buildVspacer(2.h),
                       CustomButton(
@@ -336,7 +344,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         color: Colors.white,
                         textColor: Colors.black,
                         borderColor: Colors.black,
-                        onpress: () {},
+                        onpress: () {
+                          Get.to(() => ArrivingTrackOrderScreen());
+                        },
                       ),
                     ],
                   )
@@ -447,7 +457,9 @@ class OrderDetailsScreen extends StatelessWidget {
             color: Colors.white,
             textColor: Colors.black,
             borderColor: Colors.black,
-            onpress: () {},
+            onpress: () {
+              Get.to(() => HelpCenterScreen());
+            },
           ),
         ],
       ),
@@ -505,7 +517,6 @@ class OrderDetailsScreen extends StatelessWidget {
                         align: true,
                         fontWeight: FontWeight.w500),
                     onTap: () {
-                      // Handle Sort by Popularity
                       Navigator.pop(context); // Close the bottom sheet
                     },
                   );
@@ -580,6 +591,22 @@ class OrderDetailsScreen extends StatelessWidget {
               buildsTextManrope(
                 title: "₹20",
                 size: 13.px,
+                color: Colors.grey,
+              ),
+            ],
+          ),
+          SizedBox(height: 1.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              buildsTextManrope(
+                  title: "Total Amount",
+                  size: 14.px,
+                  fontWeight: FontWeight.w600),
+              buildsTextManrope(
+                title: "₹20",
+                size: 14.px,
+                fontWeight: FontWeight.w600,
                 color: Colors.grey,
               ),
             ],

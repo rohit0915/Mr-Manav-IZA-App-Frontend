@@ -5,6 +5,7 @@ import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_item_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/track_order_section/track_order_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -88,7 +89,9 @@ Widget buildprepareDelivered(BuildContext context) {
                 color: Colors.white,
                 textColor: Colors.black,
                 borderColor: Colors.black,
-                onpress: () {},
+                onpress: () {
+                  Get.to(() => TrackOrderScreen());
+                },
               ),
             ),
             SizedBox(width: 2.w),
@@ -96,7 +99,9 @@ Widget buildprepareDelivered(BuildContext context) {
               child: CustomButton(
                 title: "Return Item",
                 onpress: () {
-                  Get.to(() => CancelOrderItemDisplayingScreen(title: "Return Item",));
+                  Get.to(() => CancelOrderItemDisplayingScreen(
+                        title: "Return Item",
+                      ));
                 },
               ),
             ),
