@@ -12,6 +12,7 @@ import 'package:iza_app/view/cart/coupon_section/coupon_screen.dart';
 import 'package:iza_app/view/cart/free_gift_section/free_gift_section_screen.dart';
 import 'package:iza_app/view/cart/gift_box_section/gift_box_screen.dart';
 import 'package:iza_app/view/cart/widgets/cart_section_widgets.dart';
+import 'package:iza_app/view/cart_payment_address_section/cart_payment_details_screen.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -89,16 +90,16 @@ class CartScreen extends StatelessWidget {
                                 buildHspacer(3.w),
                                 buildsTextManrope(title: "Gift Box added"),
                                 Spacer(),
-                                TextButton(
-                                    onPressed: () {
-                                      cartController.isCartAddGift.value =
-                                          false;
-                                    },
-                                    child: buildsTextManrope(
-                                        title: "Delete",
-                                        size: 15.px,
-                                        fontWeight: FontWeight.w500,
-                                        color: primarys))
+                                GestureDetector(
+                                  onTap: () {
+                                    cartController.isCartAddGift.value = false;
+                                  },
+                                  child: buildsTextManrope(
+                                      title: "Delete",
+                                      size: 15.px,
+                                      fontWeight: FontWeight.w500,
+                                      color: primarys),
+                                )
                               ],
                             ),
                           ),
@@ -198,7 +199,9 @@ class CartScreen extends StatelessWidget {
                           buildHspacer(5.w),
                           Expanded(
                             child: CustomButton(
-                              onpress: () {},
+                              onpress: () {
+                                Get.to(() => CartAddressChangingScreen());
+                              },
                               title: "Proceed to pay",
                             ),
                           )

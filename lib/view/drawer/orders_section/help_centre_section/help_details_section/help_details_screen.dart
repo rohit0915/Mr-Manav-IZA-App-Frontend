@@ -1,39 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iza_app/utilz/app_constants.dart';
+import 'package:iza_app/utilz/text_constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HelpCenterDetailsScreen extends StatelessWidget {
   const HelpCenterDetailsScreen({Key? key}) : super(key: key);
-
-  Widget buildsTextManrope({
-    required String title,
-    double? size,
-    FontWeight? fontWeight,
-    Color? color,
-    bool align = false,
-  }) {
-    return align
-        ? Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: GoogleFonts.manrope(
-                fontSize: size ?? 14.sp,
-                fontWeight: fontWeight ?? FontWeight.w400,
-                color: color ?? Colors.black,
-              ),
-            ),
-          )
-        : Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.manrope(
-              fontSize: size ?? 14.sp,
-              fontWeight: fontWeight ?? FontWeight.w400,
-              color: color ?? Colors.black,
-            ),
-          );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,59 +32,62 @@ class HelpCenterDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // First ExpansionTile
-            buildsTextManrope(
-              title: "Details",
-              size: 16.sp,
-              fontWeight: FontWeight.w600,
-              align: true,
-            ),
+            orderExtractedMethod(),
             SizedBox(height: 2.h),
-            ExpansionTile(
-              title: buildsTextManrope(
-                title: "Forem ipsum dolor sit",
-                size: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-              ),
-              trailing: Icon(
-                Icons.arrow_drop_down,
-                size: 20.sp,
-                color: Colors.grey,
-              ),
-              children: [
-                buildsTextManrope(
-                  title: "Detailed description goes here. Add more text to explain this item.",
-                  size: 12.sp,
-                  color: Colors.grey,
-                ),
-              ],
-            ),
+            orderExtractedMethod(),
             SizedBox(height: 2.h),
+
+            // SizedBox(height: 2.h),
             // Second ExpansionTile
-            ExpansionTile(
-              title: buildsTextManrope(
-                title: "Forem ipsum dolor sit",
-                size: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-              ),
-              trailing: Icon(
-                Icons.arrow_drop_down,
-                size: 20.sp,
-                color: Colors.grey,
-              ),
-              children: [
-                buildsTextManrope(
-                  title: "Detailed description goes here. Add more text to explain this item.",
-                  size: 12.sp,
-                  color: Colors.grey,
-                ),
-              ],
-            ),
           ],
         ),
       ),
+    );
+  }
+
+  Column orderExtractedMethod() {
+    RxBool isClicked = false.obs;
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            isClicked.value = !isClicked.value;
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              buildsTextManrope(
+                title: "Forem ipsum dolor sit",
+                size: 15.px,
+                align: true,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+              Obx(() {
+                return Icon(
+                  isClicked.value
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
+                  size: 22.sp,
+                  color: Colors.grey,
+                );
+              }),
+            ],
+          ),
+        ),
+        buildVspacer(1.h),
+        Obx(() {
+          return isClicked.value
+              ? buildsTextManrope(
+                  title:
+                      "Detailed description goes here. Add more text to explain this item.description goes here. Add more text to explain this item.",
+                  size: 14.px,
+                  align: true,
+                  color: Colors.grey,
+                )
+              : SizedBox();
+        }),
+      ],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/drawer/orders_section/help_centre_section/get_in_touch/get_in_toch_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/help_centre_section/help_details_section/help_details_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/chat_section/chat_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -69,9 +70,8 @@ class HelpCenterScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               children: [
                 GestureDetector(
-                  onTap: (){
-                                    Get.to(() => HelpCenterDetailsScreen());
-
+                  onTap: () {
+                    Get.to(() => HelpCenterDetailsScreen());
                   },
                   child: helpTopicItem(
                     icon: "help1",
@@ -113,11 +113,17 @@ class HelpCenterScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 1.h),
-            helpOptionItem(
-              icon: Icons.headset_mic,
-              title: "Get in touch",
-              subtitle: "",
+            GestureDetector(
+              onTap: () {
+                Get.to(() => GetInTouchScreen());
+              },
+              child: helpOptionItem(
+                icon: Icons.headset_mic,
+                title: "Get in touch",
+                subtitle: "",
+              ),
             ),
+            
           ],
         ),
       ),
@@ -153,6 +159,7 @@ class HelpCenterScreen extends StatelessWidget {
     required String subtitle,
   }) {
     return Container(
+      // height: Adaptive.h(10),
       padding: EdgeInsets.all(2.h),
       decoration: BoxDecoration(
         color: Colors.white,

@@ -60,7 +60,7 @@ class CustomTxtFormField extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: borderColor ??
-                          white), // Custom or default border color
+                          white),
                   borderRadius: BorderRadius.circular(
                       borderRadius ?? 12.sp), // Custom or default border radius
                 ),

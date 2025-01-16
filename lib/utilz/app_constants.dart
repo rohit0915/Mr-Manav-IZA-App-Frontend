@@ -14,3 +14,4 @@ buildHspacer(double w) {
 }
 
 final normalPadding=EdgeInsets.symmetric(horizontal: Adaptive.w(2),vertical: Adaptive.h(1));
+final horizontalPadding=EdgeInsets.symmetric(horizontal: Adaptive.w(2),);
