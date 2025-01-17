@@ -5,6 +5,7 @@ import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/bottom_navigation/custom_bottom_navigator.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/order_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -18,149 +19,159 @@ class OrdersScreen extends StatelessWidget {
       "Cancelled",
       "Delivered on 4th dec"
     ];
-    return Scaffold(
-      appBar: CustomAppBar(title: "My Orders"),
-      body: Padding(
-        padding: normalPadding,
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Card(
-                      color: white,
-                      elevation: 1,
-                      surfaceTintColor: white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    buildsTextManrope(
-                                      title: "Order Number",
-                                      size: 12.px,
-                                      color: grey.withOpacity(0.4),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    buildVspacer(1.h),
-                                    buildsTextManrope(
-                                      title: "1246585",
-                                      size: 13.px,
-                                      fontWeight: FontWeight.w500,
-                                    )
-                                  ],
-                                ),
-                                CustomButton(
-                                  onpress: () {
-                                    Get.to(() => OrderDetailsScreen(
-                                          index: index,
-                                        ));
-                                  },
-                                  title: "Order Details",
-                                  width: Adaptive.w(35),
-                                  borderColor: black,
-                                  color: white,
-                                  textColor: black,
-                                  textSize: 15.sp,
-                                )
-                              ],
-                            ),
-                            buildVspacer(2.h),
-                            Row(
-                              children: [
-                                Image.asset('assets/images/orderdetails1.png'),
-                                buildHspacer(5.w),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    buildsTextManrope(
-                                        title: "Preparing 1 Item ",
-                                        size: 15.px,
-                                        fontWeight: FontWeight.w500,
-                                        color: grey.withOpacity(0.4)),
-                                    buildVspacer(1.h),
-                                    buildsTextManrope(
-                                        title: ordersStatusList[index],
-                                        size: 15.px,
+    return WillPopScope(
+      onWillPop: () {
+        Get.off(() => BottomNavigationScreen());
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(title: "My Orders"),
+        body: Padding(
+          padding: normalPadding,
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: white,
+                        elevation: 1,
+                        surfaceTintColor: white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      buildsTextManrope(
+                                        title: "Order Number",
+                                        size: 12.px,
+                                        color: grey.withOpacity(0.4),
                                         fontWeight: FontWeight.w600,
-                                        color: ordersStatusList[index] ==
-                                                "Cancelled"
-                                            ? Colors.red
-                                            : black)
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
+                                      ),
+                                      buildVspacer(1.h),
+                                      buildsTextManrope(
+                                        title: "1246585",
+                                        size: 13.px,
+                                        fontWeight: FontWeight.w500,
+                                      )
+                                    ],
+                                  ),
+                                  CustomButton(
+                                    onpress: () {
+                                      Get.to(() => OrderDetailsScreen(
+                                            index: index,
+                                          ));
+                                    },
+                                    title: "Order Details",
+                                    width: Adaptive.w(35),
+                                    borderColor: black,
+                                    color: white,
+                                    textColor: black,
+                                    textSize: 15.sp,
+                                  )
+                                ],
+                              ),
+                              buildVspacer(2.h),
+                              Row(
+                                children: [
+                                  Image.asset(
+                                      'assets/images/orderdetails1.png'),
+                                  buildHspacer(5.w),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      buildsTextManrope(
+                                          title: "Preparing 1 Item ",
+                                          size: 15.px,
+                                          fontWeight: FontWeight.w500,
+                                          color: grey.withOpacity(0.4)),
+                                      buildVspacer(1.h),
+                                      buildsTextManrope(
+                                          title: ordersStatusList[index],
+                                          size: 15.px,
+                                          fontWeight: FontWeight.w600,
+                                          color: ordersStatusList[index] ==
+                                                  "Cancelled"
+                                              ? Colors.red
+                                              : black)
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => buildVspacer(2.h),
-                  itemCount: ordersStatusList.length),
-            ),
-            Container(
-              height: 14.h,
-              width: double.infinity,
-              decoration: BoxDecoration(color: white),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton.icon(
-                    onPressed: () {
-                      orderStatusBottomSheet(context);
+                      );
                     },
-                    icon: Image.asset('assets/images/productsort.png'),
-                    label: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildVspacer(0.5.h),
-                        buildsTextManrope(
-                            title: "Order Status",
-                            size: 17.px,
-                            fontWeight: FontWeight.w400),
-                        buildsTextManrope(
-                            title: "Popularity",
-                            size: 11.px,
-                            fontWeight: FontWeight.w400,
-                            color: grey.withOpacity(0.4))
-                      ],
-                    ),
-                  ),
-                  TextButton.icon(
-                    onPressed: () {
-                      orderDateBottomSheet(context);
-                    },
-                    icon: Image.asset('assets/images/productsort.png'),
-                    label: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildVspacer(0.5.h),
-                        buildsTextManrope(
-                            title: "Order Date",
-                            size: 17.px,
-                            fontWeight: FontWeight.w400),
-                        buildsTextManrope(
-                            title: "Apply Filters",
-                            size: 11.px,
-                            fontWeight: FontWeight.w400,
-                            color: grey.withOpacity(0.4))
-                      ],
-                    ),
-                  ),
-                ],
+                    separatorBuilder: (context, index) => buildVspacer(2.h),
+                    itemCount: ordersStatusList.length),
               ),
-            )
-          ],
+              Container(
+                height: 14.h,
+                width: double.infinity,
+                decoration: BoxDecoration(color: white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () {
+                        orderStatusBottomSheet(context);
+                      },
+                      icon: Image.asset('assets/images/productsort.png'),
+                      label: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          buildVspacer(0.5.h),
+                          buildsTextManrope(
+                              title: "Order Status",
+                              size: 17.px,
+                              fontWeight: FontWeight.w400),
+                          buildsTextManrope(
+                              title: "Popularity",
+                              size: 11.px,
+                              fontWeight: FontWeight.w400,
+                              color: grey.withOpacity(0.4))
+                        ],
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {
+                        orderDateBottomSheet(context);
+                      },
+                      icon: Image.asset('assets/images/productsort.png'),
+                      label: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          buildVspacer(0.5.h),
+                          buildsTextManrope(
+                              title: "Order Date",
+                              size: 17.px,
+                              fontWeight: FontWeight.w400),
+                          buildsTextManrope(
+                              title: "Apply Filters",
+                              size: 11.px,
+                              fontWeight: FontWeight.w400,
+                              color: grey.withOpacity(0.4))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gif/gif.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
@@ -35,7 +36,18 @@ class _CompleteMessageScreenState extends State<CompleteMessageScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/FigmatoLottie.png'),
+            Center(
+              child: Gif(
+                autostart: Autostart.loop,
+                duration: Duration(seconds: 3),
+                placeholder: (context) =>
+                    const Center(child: CircularProgressIndicator()),
+                image: const AssetImage('assets/lottie/figmagif.gif'),
+                height: Adaptive.h(16),
+                // width: Adaptive.w(50),
+                //  fit: BoxFit.scaleDown,
+              ),
+            ),
             buildVspacer(1.h),
             buildsTextManrope(
                 title: "Congratulation!",

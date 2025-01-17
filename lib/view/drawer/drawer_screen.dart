@@ -4,14 +4,18 @@ import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/cart/coupon_section/coupon_screen.dart';
 import 'package:iza_app/view/drawer/about_us_section/about_us_screen.dart';
 import 'package:iza_app/view/drawer/about_us_section/privacy_plicy_policy/privacy_policy_screen.dart';
 import 'package:iza_app/view/drawer/about_us_section/terms_and_condition/terms_and_condition.dart';
+import 'package:iza_app/view/drawer/address_section/address_screen.dart';
 import 'package:iza_app/view/drawer/membership/membership_section.dart';
 import 'package:iza_app/view/drawer/notification/notification_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/help_centre_section/help_centre_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/payment_section/payment_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
+import 'package:iza_app/view/drawer/refer_and_earn/refer_and_earn.dart';
 import 'package:iza_app/view/drawer/wallet_section/wallet_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -152,7 +156,13 @@ class DrawerMenu extends StatelessWidget {
                     },
                     child: _buildDrawerItem(
                         "IZA Wallet", "assets/images/drawer7.png")),
-                _buildDrawerItem("Address", "assets/images/drawer8.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => AddressScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Address", "assets/images/drawer8.png")),
                 GestureDetector(
                     onTap: () {
                       Get.back();
@@ -160,10 +170,27 @@ class DrawerMenu extends StatelessWidget {
                     },
                     child: _buildDrawerItem(
                         "Payment", "assets/images/drawer9.png")),
-                _buildDrawerItem("Coupons", "assets/images/drawer10.png"),
-                _buildDrawerItem(
-                    "Refer and Earn", "assets/images/drawer11.png"),
-                _buildDrawerItem("Help Center", "assets/images/drawer12.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(() => CouponScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Coupons", "assets/images/drawer10.png")),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                    Get.to(() => ReferAndEarnScreen());
+                  },
+                  child: _buildDrawerItem(
+                      "Refer and Earn", "assets/images/drawer11.png"),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => HelpCenterScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Help Center", "assets/images/drawer12.png")),
                 GestureDetector(
                     onTap: () {
                       Get.back();
@@ -173,7 +200,13 @@ class DrawerMenu extends StatelessWidget {
                         "About", "assets/images/drawer13.png")),
                 _buildDrawerItem(
                     "Become a Vendor", "assets/images/drawer14.png"),
-                _buildDrawerItem("Settings", "assets/images/drawer15.png"),
+                GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => ReferAndEarnScreen());
+                    },
+                    child: _buildDrawerItem(
+                        "Settings", "assets/images/drawer15.png")),
               ],
             ),
 

@@ -15,6 +15,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/landing.png',
+            width: Adaptive.w(100),
             fit: BoxFit.cover,
           ),
           Padding(

@@ -79,7 +79,7 @@ class CartScreen extends StatelessWidget {
                           elevation: 3,
                           shadowColor: Colors.black38,
                           child: Padding(
-                            padding: const EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(12.sp),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

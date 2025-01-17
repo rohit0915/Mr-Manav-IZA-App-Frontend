@@ -8,6 +8,7 @@ import 'package:iza_app/view/drawer/orders_section/help_centre_section/help_cent
 import 'package:iza_app/view/drawer/orders_section/order_details_section/cancel_order/cancel_order_item_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/track_order_of_arriving/arriving_track_order.dart';
 import 'package:iza_app/view/drawer/orders_section/order_details_section/widgets/order_details_widget.dart';
+import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,121 +18,127 @@ class OrderDetailsScreen extends StatelessWidget {
   RxBool isClicked = false.obs;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+    return WillPopScope(
+      onWillPop: () {
+        Get.off(() => OrdersScreen());
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: buildsTextManrope(
+            title: "My Orders",
+            size: 17.px,
+            fontWeight: FontWeight.bold,
+          ),
+          centerTitle: true,
+          actions: [
+            Image.asset('assets/images/orderdetails.png'),
+            buildHspacer(3.w),
+          ],
         ),
-        title: buildsTextManrope(
-          title: "My Orders",
-          size: 17.px,
-          fontWeight: FontWeight.bold,
+        body: Padding(
+          padding: normalPadding,
+          child: SingleChildScrollView(
+              child: index == 0
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildOrderInfo(),
+                        SizedBox(height: 2.h),
+                        _buildShippingAddress(),
+                        SizedBox(height: 2.h),
+                        _buildPreparingItem(context),
+                        SizedBox(height: 2.h),
+                        _buildPaymentDetails(),
+                        Obx(() {
+                          return isClicked.value
+                              ? Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: Adaptive.w(5)),
+                                  child: CustomButton(
+                                    title: "Need Help ?",
+                                    color: Colors.white,
+                                    textColor: Colors.black,
+                                    borderColor: Colors.black,
+                                    onpress: () {
+                                      Get.to(() => HelpCenterScreen());
+                                    },
+                                  ),
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: Adaptive.w(5)),
+                                  child: CustomButton(
+                                    title: "Cancel Order",
+                                    color: Colors.white,
+                                    textColor: Colors.black,
+                                    borderColor: Colors.black,
+                                    onpress: () {},
+                                  ),
+                                );
+                        }),
+                      ],
+                    )
+                  : index == 1
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildOrderInfo(),
+                            SizedBox(height: 2.h),
+                            _buildShippingAddress(),
+                            SizedBox(height: 2.h),
+                            _buildPreparingCancelItem(context),
+                            SizedBox(height: 2.h),
+                            _buildPaymentDetails(),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildOrderInfo(),
+                            SizedBox(height: 2.h),
+                            _buildShippingAddress(),
+                            SizedBox(height: 2.h),
+                            buildprepareDelivered(context),
+                            SizedBox(height: 2.h),
+                            _buildPaymentDetails(),
+                            buildVspacer(2.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomButton(
+                                    title: "Need Help ?",
+                                    color: Colors.white,
+                                    textColor: Colors.black,
+                                    borderColor: Colors.black,
+                                    onpress: () {
+                                      Get.to(() => HelpCenterScreen());
+                                    },
+                                    textSize: 15.sp,
+                                  ),
+                                ),
+                                SizedBox(width: 2.w),
+                                Expanded(
+                                  child: CustomButton(
+                                    title: "Download Invoices",
+                                    color: Colors.white,
+                                    textColor: Colors.black,
+                                    borderColor: Colors.black,
+                                    textSize: 15.sp,
+                                    onpress: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
         ),
-        centerTitle: true,
-        actions: [
-          Image.asset('assets/images/orderdetails.png'),
-          buildHspacer(3.w),
-        ],
-      ),
-      body: Padding(
-        padding: normalPadding,
-        child: SingleChildScrollView(
-            child: index == 0
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildOrderInfo(),
-                      SizedBox(height: 2.h),
-                      _buildShippingAddress(),
-                      SizedBox(height: 2.h),
-                      _buildPreparingItem(context),
-                      SizedBox(height: 2.h),
-                      _buildPaymentDetails(),
-                      Obx(() {
-                        return isClicked.value
-                            ? Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Adaptive.w(5)),
-                                child: CustomButton(
-                                  title: "Need Help ?",
-                                  color: Colors.white,
-                                  textColor: Colors.black,
-                                  borderColor: Colors.black,
-                                  onpress: () {
-                                    Get.to(() => HelpCenterScreen());
-                                  },
-                                ),
-                              )
-                            : Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Adaptive.w(5)),
-                                child: CustomButton(
-                                  title: "Cancel Order",
-                                  color: Colors.white,
-                                  textColor: Colors.black,
-                                  borderColor: Colors.black,
-                                  onpress: () {},
-                                ),
-                              );
-                      }),
-                    ],
-                  )
-                : index == 1
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildOrderInfo(),
-                          SizedBox(height: 2.h),
-                          _buildShippingAddress(),
-                          SizedBox(height: 2.h),
-                          _buildPreparingCancelItem(context),
-                          SizedBox(height: 2.h),
-                          _buildPaymentDetails(),
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildOrderInfo(),
-                          SizedBox(height: 2.h),
-                          _buildShippingAddress(),
-                          SizedBox(height: 2.h),
-                          buildprepareDelivered(context),
-                          SizedBox(height: 2.h),
-                          _buildPaymentDetails(),
-                          buildVspacer(2.h),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: CustomButton(
-                                  title: "Need Help ?",
-                                  color: Colors.white,
-                                  textColor: Colors.black,
-                                  borderColor: Colors.black,
-                                  onpress: () {
-                                    Get.to(() => HelpCenterScreen());
-                                  },
-                                  textSize: 15.sp,
-                                ),
-                              ),
-                              SizedBox(width: 2.w),
-                              Expanded(
-                                child: CustomButton(
-                                  title: "Download Invoices",
-                                  color: Colors.white,
-                                  textColor: Colors.black,
-                                  borderColor: Colors.black,
-                                  textSize: 15.sp,
-                                  onpress: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )),
       ),
     );
   }
