@@ -5,6 +5,9 @@ import 'package:iza_app/utilz/button_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/bottom_navigation/custom_bottom_navigator.dart';
+import 'package:iza_app/view/drawer/orders_section/order_details_section/order_details_screen.dart';
+import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/track_order_section/track_order_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -47,7 +50,8 @@ class CanceledItemScreen extends StatelessWidget {
         child: CustomButton(
           title: "Okay, Got it",
           onpress: () {
-            Get.to(() => TrackOrderScreen());
+            Get.offAll(() => BottomNavigationScreen());
+            Get.to(() => OrdersScreen());
           },
         ),
       ),

@@ -74,6 +74,10 @@ SizedBox dealsOfDay() {
                               ? Wrap(
                                   direction: Axis.horizontal,
                                   // runSpacing: 2.h,
+                                  alignment: WrapAlignment.start,
+                                  crossAxisAlignment: WrapCrossAlignment.start,
+                                  runAlignment: WrapAlignment.start,
+                               
                                   spacing: 3.w,
                                   children: [
                                     IntrinsicWidth(

@@ -17,6 +17,7 @@ import 'package:iza_app/view/search_section/search_screen.dart';
 import 'package:iza_app/view/stream/stream_video_section/stream_video_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -146,17 +147,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
+                    SmoothPageIndicator(
+                      controller: controller,
+                      count: banner.length,
+                      axisDirection: Axis.horizontal,
+                      effect: ExpandingDotsEffect(
+                          dotWidth: Adaptive.w(2),
+                          dotHeight: Adaptive.h(1),
+                          activeDotColor: black),
+                    ),
                     buildVspacer(2.h),
                     mainTitleWidget("Categories"),
                     buildVspacer(2.h),
                     _gridviewCategoryMethod(),
                     buildVspacer(2.h),
-                    buildsTextBitter(
-                      title: "Deals Of The Day",
-                      size: 24.px,
-                      align: true,
-                      fontWeight: FontWeight.w300,
-                    ),
+                    mainTitleWidget("Deals Of The Day"),
                     buildVspacer(2.h),
                     dealsOfDay(),
                     buildVspacer(2.h),

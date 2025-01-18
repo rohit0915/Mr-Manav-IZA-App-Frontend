@@ -120,7 +120,7 @@ class _StreamScreenState extends State<StreamScreen> {
               style: GoogleFonts.bitter(
                   fontWeight: FontWeight.w400,
                   fontSize: 20.px,
-                  color: grey.withOpacity(0.3),
+                  color: grey,
                   letterSpacing: 1.w),
             ),
             buildVspacer(1.h),
@@ -181,9 +181,13 @@ class _StreamScreenState extends State<StreamScreen> {
             buildVspacer(2.h),
             Expanded(
               child: PageView(
-                physics: NeverScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
                 controller: controller2,
                 allowImplicitScrolling: true,
+                onPageChanged: (value) {
+                  selectedIndex.value = value;
+                 
+                },
                 children: [
                   StreamAllWidget(banner: banner),
                   BlogsWidget(banner: banner),

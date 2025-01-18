@@ -7,6 +7,9 @@ import 'package:iza_app/controller/product_listing_controller.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/category_section/filter_section/filter_screen.dart';
+import 'package:iza_app/view/product_listing_section/product_details_section/product_details_screen.dart';
+import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -41,18 +44,14 @@ class ProductListScreen extends StatelessWidget {
               // Handle search
             },
           ),
-          IconButton(
-            icon: Icon(Icons.favorite_outline, color: Colors.black),
-            onPressed: () {
-              // Handle favorites
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
-            onPressed: () {
-              // Handle cart
-            },
-          ),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => WishlistScreen());
+              },
+              child: Image.asset('assets/images/offerappbar2.png')),
+          buildHspacer(3.w),
+          Image.asset('assets/images/offerappbar3.png'),
+          buildHspacer(3.w)
         ],
       ),
       body: Stack(
@@ -100,8 +99,13 @@ class ProductListScreen extends StatelessWidget {
                             mainAxisSpacing: 2.h,
                           ),
                           itemBuilder: (context, index) {
-                            return ProductCard(
-                              index: index,
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => ProductDetailsScreen());
+                              },
+                              child: ProductCard(
+                                index: index,
+                              ),
                             );
                           },
                         ),
@@ -139,7 +143,9 @@ class ProductListScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => FilterByScreen());
+                      },
                       icon: Image.asset('assets/images/productfilter.png'),
                       label: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

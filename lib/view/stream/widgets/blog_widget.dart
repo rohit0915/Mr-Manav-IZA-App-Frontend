@@ -49,10 +49,10 @@ class _BlogsWidgetState extends State<BlogsWidget> {
           buildVspacer(2.h),
           // headingWidget("Must Read", "View All>"),
           blogWidget(),
-buildVspacer(1.h),
+          buildVspacer(1.h),
           blogWidget(),
-buildVspacer(1.h),
- SizedBox(
+          buildVspacer(1.h),
+          SizedBox(
             height: 295.px,
             child: ListView.separated(
                 shrinkWrap: true,
@@ -102,86 +102,74 @@ buildVspacer(1.h),
 
   Column blogWidget() {
     return Column(
-          children: [
-            SizedBox(
-              height: 245.px,
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    RxBool isFavorite = false.obs;
-                    return Container(
-                      width: Adaptive.w(45),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        SizedBox(
+          height: 245.px,
+          child: ListView.separated(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                RxBool isFavorite = false.obs;
+                return Container(
+                  width: Adaptive.w(45),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black12)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset('assets/images/stream2.png'),
+                        buildVspacer(2.h),
+                        buildsTextManrope(
+                            title:
+                                "How to Choose\nperfect shade for\nyour skin",
+                            size: 12.px,
+                            align: true,
+                            fontWeight: FontWeight.w600),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/stream2.png'),
-                            buildVspacer(2.h),
                             buildsTextManrope(
-                                title:
-                                    "How to Choose\nperfect shade for\nyour skin",
-                                size: 12.px,
-                                align: true,
-                                fontWeight: FontWeight.w600),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                buildsTextManrope(
-                                  title: "2 min read",
-                                  size: 11.px,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                buildHspacer(4.w),
-                                buildsTextManrope(title: "."),
-                                buildsTextManrope(
-                                  title: "20 Dec 24",
-                                  size: 11.px,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ],
-                            )
+                              title: "2 min read",
+                              size: 11.px,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            buildHspacer(4.w),
+                            buildsTextManrope(title: "."),
+                            buildsTextManrope(
+                              title: "20 Dec 24",
+                              size: 11.px,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ],
-                        ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) => buildHspacer(2.w),
+              itemCount: 2),
+        ),
+        buildVspacer(1.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildHspacer(1.w),
+            ...List.generate(
+                4,
+                (index) => Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                        radius: 1.w,
+                        backgroundColor: grey,
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => buildHspacer(2.w),
-                  itemCount: 2),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Adaptive.w(3),
-                    vertical: Adaptive.h(0.5),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.sp),
-                    color: black,
-                  ),
-                  child: Center(
-                    child: buildsTextManrope(title: "1/5", color: white),
-                  ),
-                ),
-                buildHspacer(1.w),
-                ...List.generate(
-                    4,
-                    (index) => Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: CircleAvatar(
-                            radius: 1.w,
-                            backgroundColor: grey,
-                          ),
-                        ))
-              ],
-            ),
+                    ))
           ],
-        );
+        ),
+      ],
+    );
   }
 }

@@ -55,6 +55,8 @@ class DrawerMenu extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
+                          Get.back();
+
                           Get.to(() => PersonalDetailsScreen());
                         },
                         child: buildsTextManrope(
@@ -68,6 +70,7 @@ class DrawerMenu extends StatelessWidget {
                   const Spacer(),
                   GestureDetector(
                       onTap: () {
+                        Get.back();
                         Get.to(() => NotificationScreen());
                       },
                       child: Image.asset('assets/images/drawer0.png')),
@@ -104,25 +107,25 @@ class DrawerMenu extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Adaptive.w(2), vertical: Adaptive.h(1)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          buildsTextManrope(
-                              title: "makeup Vanity", size: 12.px),
-                          buildHspacer(1.h),
-                          Icon(Icons.keyboard_arrow_down_sharp)
-                        ],
-                      ),
-                      buildsTextManrope(
-                          title: "Diamand", size: 10.px, color: grey)
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(
+                //       horizontal: Adaptive.w(2), vertical: Adaptive.h(1)),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Row(
+                //         children: [
+                //           buildsTextManrope(
+                //               title: "makeup Vanity", size: 12.px),
+                //           buildHspacer(1.h),
+                //           Icon(Icons.keyboard_arrow_down_sharp)
+                //         ],
+                //       ),
+                //       buildsTextManrope(
+                //           title: "Diamand", size: 10.px, color: grey)
+                //     ],
+                //   ),
+                // ),
                 GestureDetector(
                     onTap: () {
                       Get.back();

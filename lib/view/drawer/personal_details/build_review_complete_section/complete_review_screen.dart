@@ -9,6 +9,7 @@ import 'package:iza_app/utilz/custom_appbar.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/bottom_navigation/custom_bottom_navigator.dart';
 import 'package:iza_app/view/drawer/personal_details/chat_section/chat_screen.dart';
+import 'package:iza_app/view/drawer/personal_details/profile_explore_section/profile_explore_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CompleteReviewOfQuizScreen extends StatefulWidget {
@@ -146,7 +147,7 @@ class _CompleteReviewOfQuizScreenState extends State<CompleteReviewOfQuizScreen>
                 Expanded(
                   child: CustomButton(
                     onpress: () {
-                      // Get.to(() => CompleteReviewOfQuizScreen());
+                      Get.to(() => ProfileExploreScreen());
                     },
                     title: "Explore",
                   ),

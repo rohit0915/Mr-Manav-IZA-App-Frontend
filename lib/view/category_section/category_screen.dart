@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/category_section/filter_section/filter_screen.dart';
 import 'package:iza_app/view/category_section/widgets/list_of_category.dart';
 import 'package:iza_app/view/product_listing_section/product_listing_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -64,7 +65,11 @@ class CategoryScreen extends StatelessWidget {
                       size: 22.px,
                       fontWeight: FontWeight.w500,
                     ),
-                    Image.asset('assets/images/category1.png')
+                    GestureDetector(
+                        onTap: () {
+                          Get.to(() => FilterByScreen());
+                        },
+                        child: Image.asset('assets/images/category1.png'))
                   ],
                 ),
                 buildVspacer(2.h),
@@ -130,7 +135,7 @@ class CategoryScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Get.to(()=>ProductListScreen());
+                                Get.to(() => ProductListScreen());
                               },
                               child: SizedBox(
                                 height: Adaptive.h(7),
@@ -148,11 +153,12 @@ class CategoryScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                       ),
                                       GestureDetector(
-                                         onTap:(){
-                                                                          isClicked2.value = !isClicked2.value;
-
-                                         },
-                                        child: Icon(Icons.keyboard_arrow_down)),
+                                          onTap: () {
+                                            isClicked2.value =
+                                                !isClicked2.value;
+                                          },
+                                          child:
+                                              Icon(Icons.keyboard_arrow_down)),
                                     ],
                                   ),
                                 ),

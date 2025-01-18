@@ -99,12 +99,12 @@ Row headingWidget(String title1, String title2) {
       buildsTextBitter(
           title: title1,
           size: 24.px,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w600,
           color: Colors.black54),
       buildsTextBitter(
           title: title2,
           size: 14.px,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
           color: Colors.black54),
     ],
   );
