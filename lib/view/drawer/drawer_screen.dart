@@ -9,13 +9,16 @@ import 'package:iza_app/view/drawer/about_us_section/about_us_screen.dart';
 import 'package:iza_app/view/drawer/about_us_section/privacy_plicy_policy/privacy_policy_screen.dart';
 import 'package:iza_app/view/drawer/about_us_section/terms_and_condition/terms_and_condition.dart';
 import 'package:iza_app/view/drawer/address_section/address_screen.dart';
+import 'package:iza_app/view/drawer/loyality_section/loyality_screen.dart';
 import 'package:iza_app/view/drawer/membership/membership_section.dart';
 import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/help_centre_section/help_centre_screen.dart';
 import 'package:iza_app/view/drawer/orders_section/orders_screen.dart';
 import 'package:iza_app/view/drawer/payment_section/payment_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/personal_details_screen.dart';
+import 'package:iza_app/view/drawer/personal_details/quiz_section/quiz_section.dart';
 import 'package:iza_app/view/drawer/refer_and_earn/refer_and_earn.dart';
+import 'package:iza_app/view/drawer/settings_section/setting_screen.dart';
 import 'package:iza_app/view/drawer/wallet_section/wallet_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -141,8 +144,14 @@ class DrawerMenu extends StatelessWidget {
                     },
                     child: _buildDrawerItem(
                         "Orders", "assets/images/drawer3.png")),
-                _buildDrawerItem(
-                    "Loyalty Program", "assets/images/drawer4.png"),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                    Get.to(() => LoyalityScreen());
+                  },
+                  child: _buildDrawerItem(
+                      "Loyalty Program", "assets/images/drawer4.png"),
+                ),
                 GestureDetector(
                     onTap: () {
                       Get.back();
@@ -150,8 +159,13 @@ class DrawerMenu extends StatelessWidget {
                     },
                     child: _buildDrawerItem(
                         "Membership", "assets/images/drawer5.png")),
-                _buildDrawerItem(
-                    "My Beauty Profile", "assets/images/drawer6.png"),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => QuizSectionScreen());
+                  },
+                  child: _buildDrawerItem(
+                      "My Beauty Profile", "assets/images/drawer6.png"),
+                ),
                 GestureDetector(
                     onTap: () {
                       Get.back();
@@ -206,7 +220,8 @@ class DrawerMenu extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       Get.back();
-                      Get.to(() => ReferAndEarnScreen());
+
+                      Get.to(() => SettingsScreen());
                     },
                     child: _buildDrawerItem(
                         "Settings", "assets/images/drawer15.png")),

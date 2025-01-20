@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iza_app/controller/product_listing_controller.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
@@ -15,105 +14,106 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'widgets/product_listing_screen.dart';
 
-class ProductListScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.put(ProductListingConroller());
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            // Handle back button
-          },
-        ),
-        title: Text(
-          "Face",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.black),
+  class ProductListScreen extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      final controller = Get.put(ProductListingConroller());
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
-              // Handle search
+              // Handle back button
+              Get.back();
             },
           ),
-          GestureDetector(
-              onTap: () {
-                Get.to(() => WishlistScreen());
+          title: Text(
+            "Face",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search, color: Colors.black),
+              onPressed: () {
+                // Handle search
               },
-              child: Image.asset('assets/images/offerappbar2.png')),
-          buildHspacer(3.w),
-          Image.asset('assets/images/offerappbar3.png'),
-          buildHspacer(3.w)
-        ],
-      ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Column(
-            children: [
-              // Banner
-              Container(
-                width: double.infinity,
-                color: Colors.pink[50],
-                padding: EdgeInsets.all(2.h),
-                child: Text(
-                  "Enjoy Rs.1000 off. Use code : 12345",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 14.sp),
+            ),
+            GestureDetector(
+                onTap: () {
+                  Get.to(() => WishlistScreen());
+                },
+                child: Image.asset('assets/images/offerappbar2.png')),
+            buildHspacer(3.w),
+            Image.asset('assets/images/offerappbar3.png'),
+            buildHspacer(3.w)
+          ],
+        ),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Column(
+              children: [
+                // Banner
+                Container(
+                  width: double.infinity,
+                  color: Colors.pink[50],
+                  padding: EdgeInsets.all(2.h),
+                  child: Text(
+                    "Enjoy Rs.1000 off. Use code : 12345",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                  ),
                 ),
-              ),
-              // Product Grid Section
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 2.h),
-                        // Product Count
-                        Text(
-                          "Showing all products (1234 Items)",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.black),
-                        ),
-                        SizedBox(height: 2.h),
-                        // Product Grid
-                        GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 6, // Change this count as needed
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 2 / 4,
-                            crossAxisSpacing: 2.w,
-                            mainAxisSpacing: 2.h,
+                // Product Grid Section
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 2.h),
+                          // Product Count
+                          Text(
+                            "Showing all products (1234 Items)",
+                            style:
+                                TextStyle(fontSize: 14.sp, color: Colors.black),
                           ),
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Get.to(() => ProductDetailsScreen());
-                              },
-                              child: ProductCard(
-                                index: index,
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                          SizedBox(height: 2.h),
+                          // Product Grid
+                          GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 6, // Change this count as needed
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 2 / 4,
+                              crossAxisSpacing: 2.w,
+                              mainAxisSpacing: 2.h,
+                            ),
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.to(() => ProductDetailsScreen());
+                                },
+                                child: ProductCard(
+                                  index: index,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
               Container(
                 color: Colors.white,
                 height: Adaptive.h(10),

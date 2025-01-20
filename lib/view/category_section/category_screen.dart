@@ -9,8 +9,9 @@ import 'package:iza_app/view/product_listing_section/product_listing_screen.dart
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  CategoryScreen({super.key});
 
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +19,7 @@ class CategoryScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: Adaptive.w(2)),
         child: SafeArea(
           child: SingleChildScrollView(
+            controller: scrollController,
             child: Column(
               children: [
                 buildsTextBitter(
@@ -99,6 +101,17 @@ class CategoryScreen extends StatelessWidget {
           onTap: () {
             isCategoryClicked.value = !isCategoryClicked.value;
             print("isClicked:$isCategoryClicked");
+            if (titles[index] == "Everyday Essential") {
+              // Scroll to ensure the expanded item is visible
+              Future.delayed(Duration(milliseconds: 300), () {
+                scrollController.animateTo(
+                  scrollController.position.pixels +
+                      200, // Adjust scroll amount
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              });
+            }
           },
           child: Container(
             height: Adaptive.h(13),

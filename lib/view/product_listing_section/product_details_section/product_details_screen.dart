@@ -9,7 +9,9 @@ import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/bottom_navigation/custom_bottom_navigator.dart';
 import 'package:iza_app/view/home_section/home_screen.dart';
 import 'package:iza_app/view/offer_section/widgets/deals_of_day.dart';
+import 'package:iza_app/view/product_listing_section/product_details_section/widget/add_gst_number_widget.dart';
 import 'package:iza_app/view/product_listing_section/product_details_section/widget/rating_review_widget.dart';
+import 'package:iza_app/view/product_listing_section/product_details_section/widget/view_product_details_widget.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -26,6 +28,7 @@ class ProductDetailsScreen extends StatelessWidget {
     ];
     PageController controller = PageController();
     RxBool isAddedToCart = false.obs;
+    RxBool isViewDetails = false.obs;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -127,63 +130,87 @@ class ProductDetailsScreen extends StatelessWidget {
                     color: grey.withOpacity(0.3),
                   ),
                   buildVspacer(1.h),
-                  Container(
-                    height: Adaptive.h(5),
-                    padding: EdgeInsets.all(12.sp),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: grey.withOpacity(0.3)),
-                      borderRadius: BorderRadius.circular(12.sp),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildsTextManrope(
-                            title: "View Product Details",
-                            size: 13.px,
-                            fontWeight: FontWeight.w400,
-                            color: primarys),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: primarys,
-                        )
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      isViewDetails.value = !isViewDetails.value;
+                    },
+                    child: Container(
+                      height: Adaptive.h(5),
+                      padding: EdgeInsets.all(12.sp),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: grey.withOpacity(0.3)),
+                        borderRadius: BorderRadius.circular(12.sp),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildsTextManrope(
+                              title: "View Product Details",
+                              size: 13.px,
+                              fontWeight: FontWeight.w400,
+                              color: primarys),
+                          Obx(() {
+                            return Icon(
+                              isViewDetails.value
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down,
+                              color: primarys,
+                            );
+                          })
+                        ],
+                      ),
                     ),
                   ),
+                  Obx(() {
+                    return isViewDetails.value
+                        ? Column(
+                            children: [
+                              buildVspacer(2.h),
+                              FrameWidget(),
+                            ],
+                          )
+                        : SizedBox();
+                  }),
                   buildVspacer(1.h),
                   RatingAndReviewsWidget(),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: Adaptive.w(2),
-                      vertical: Adaptive.h(1),
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: grey.withOpacity(0.2),
-                        ),
-                        borderRadius: BorderRadius.circular(12.sp)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset('assets/images/product_details4.png'),
-                        Column(
-                          spacing: 1.h,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            buildsTextManrope(
-                                title: "Add GSTIN",
-                                size: 15.px,
-                                fontWeight: FontWeight.w500),
-                            buildsTextManrope(
-                                title:
-                                    "Claim GST credit of 28% on this product",
-                                size: 12.px,
-                                fontWeight: FontWeight.w400,
-                                align: true,
-                                color: grey)
-                          ],
-                        ),
-                        Icon(Icons.keyboard_arrow_right)
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      showGstDetailsBottomSheet(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Adaptive.w(2),
+                        vertical: Adaptive.h(1),
+                      ),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: grey.withOpacity(0.2),
+                          ),
+                          borderRadius: BorderRadius.circular(12.sp)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset('assets/images/product_details4.png'),
+                          Column(
+                            spacing: 1.h,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              buildsTextManrope(
+                                  title: "Add GSTIN",
+                                  size: 15.px,
+                                  fontWeight: FontWeight.w500),
+                              buildsTextManrope(
+                                  title:
+                                      "Claim GST credit of 28% on this product",
+                                  size: 12.px,
+                                  fontWeight: FontWeight.w400,
+                                  align: true,
+                                  color: grey)
+                            ],
+                          ),
+                          Icon(Icons.keyboard_arrow_right)
+                        ],
+                      ),
                     ),
                   ),
                   buildVspacer(1.h),
