@@ -2,7 +2,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iza_app/controller/bottom_controller.dart';
+import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/colors.dart';
+import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/category_section/category_screen.dart';
 import 'package:iza_app/view/chat_bot_section/chat_bot_screen.dart';
 import 'package:iza_app/view/home_section/home_screen.dart';
@@ -27,7 +29,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     List<Widget> widgetOptions = [
       HomeScreen(),
       CategoryScreen(),
-      LoginScreen(),
+      ChatBotScreen(),
       OfferScreen(),
       StreamScreen(),
     ];
@@ -38,11 +40,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       }),
       bottomNavigationBar: Obx(() {
         return Container(
+        
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
+              
             ),
             boxShadow: [
               BoxShadow(
@@ -54,15 +58,15 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ],
           ),
           padding: EdgeInsets.symmetric(
-              vertical: Adaptive.h(1)), // Padding around Row
+              vertical: Adaptive.h(1.2)), // Padding around Row
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildNavItem('assets/images/bottom0.png', 0),
-              _buildNavItem('assets/images/bottom1.png', 1),
-              _buildNavItem('assets/images/bottom2.png', 2),
-              _buildNavItem('assets/images/bottom3.png', 3),
-              _buildNavItem('assets/images/bottom4.png', 4),
+              _buildNavItem('assets/images/bottom0.png', 0, "Home"),
+              _buildNavItem('assets/images/bottom1.png', 1, "Shop"),
+              _buildNavItem('assets/images/bottom2.png', 2, "ChatBot"),
+              _buildNavItem('assets/images/bottom3.png', 3, "Offers"),
+              _buildNavItem('assets/images/bottom4.png', 4, "Stream"),
             ],
           ),
         );
@@ -70,25 +74,34 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     );
   }
 
-  Widget _buildNavItem(String assetPath, int index) {
+  Widget _buildNavItem(String assetPath, int index, String title) {
     return GestureDetector(
       onTap: () {
         log("Tapped on item: $index");
-        if (index == 2) {
-          Get.to(() => ChatBotScreen());
-        } else {}
+
         controller.currentIndex.value = index;
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             assetPath,
-            color:
-                controller.currentIndex.value == index ? primarys : Colors.black,
-            // height: 24.sp,
-            // width: 24.sp,
+            color: controller.currentIndex.value == index
+                ? primarys
+                : Colors.black,
+            height: 24.sp,
+            width: 24.sp,
           ),
+          buildVspacer(1.h),
+          buildsTextManrope(
+            title: title,
+            size: 11.px,
+            fontWeight: FontWeight.w400,
+            color: controller.currentIndex.value == index
+                ? primarys
+                : Colors.black,
+          )
           // SizedBox(height: 5), // Space between icon and indicator
         ],
       ),

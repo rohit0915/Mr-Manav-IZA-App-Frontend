@@ -22,18 +22,18 @@ class CategoryScreen extends StatelessWidget {
             controller: scrollController,
             child: Column(
               children: [
-                buildsTextBitter(
-                    align: true,
-                    title: "Makeup Vanity",
-                    color: Colors.grey,
-                    size: 12.px,
-                    fontWeight: FontWeight.w400),
-                buildsTextCormarant(
-                  title: "Silver >",
-                  size: 24.px,
-                  align: true,
-                  fontWeight: FontWeight.w400,
-                ),
+                // buildsTextBitter(
+                //     align: true,
+                //     title: "Makeup Vanity",
+                //     color: Colors.grey,
+                //     size: 12.px,
+                //     fontWeight: FontWeight.w400),
+                // buildsTextCormarant(
+                //   title: "Silver >",
+                //   size: 24.px,
+                //   align: true,
+                //   fontWeight: FontWeight.w400,
+                // ),
                 buildVspacer(1.h),
                 Divider(
                   color: Colors.black45,
@@ -138,83 +138,130 @@ class CategoryScreen extends StatelessWidget {
         ),
         Obx(() {
           return isCategoryClicked.value
-              ? SizedBox(
-                  child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        RxBool isClicked2 = false.obs;
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(() => ProductListScreen());
-                              },
-                              child: SizedBox(
-                                height: Adaptive.h(7),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: Adaptive.w(4),
-                                      vertical: Adaptive.h(2)),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      buildsTextManrope(
-                                        title: categoryItems[index],
-                                        size: 17.px,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      GestureDetector(
-                                          onTap: () {
-                                            isClicked2.value =
-                                                !isClicked2.value;
-                                          },
-                                          child:
-                                              Icon(Icons.keyboard_arrow_down)),
-                                    ],
+              ? index == 4
+                  ? SizedBox(
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) =>
+                              buildVspacer(1.h),
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: makeupvantityList.length,
+                          itemBuilder: (context, index) {
+                            // RxBool isClicked2 = false.obs;
+                            return Column(children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => ProductListScreen());
+                                },
+                                child: SizedBox(
+                                  height: Adaptive.h(7),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: Adaptive.w(4),
+                                        vertical: Adaptive.h(2)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        buildsTextManrope(
+                                          title: makeupvantityList[index],
+                                          size: 17.px,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        GestureDetector(
+                                            onTap: () {
+                                              // isClicked2.value =
+                                              //     !isClicked2.value;
+                                            },
+                                            child: Icon(
+                                                Icons.keyboard_arrow_down)),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Obx(() {
-                              return isClicked2.value
-                                  ? SizedBox(
-                                      child: ListView.builder(
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            padding: EdgeInsets.all(12.sp),
-                                            decoration: BoxDecoration(
-                                                color:
-                                                    primarys.withOpacity(0.1)),
-                                            child: Column(
-                                              children: [
-                                                buildsTextManrope(
-                                                    title: itemsList2[index],
-                                                    size: 15.px,
-                                                    fontWeight: FontWeight.w400,
-                                                    align: true),
-                                                buildVspacer(1.h),
-                                                Divider(
-                                                  color:
-                                                      primarys.withOpacity(0.4),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                        itemCount: itemsList2.length,
+                              )
+                            ]);
+                          }))
+                  : SizedBox(
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            RxBool isClicked2 = false.obs;
+                            return Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => ProductListScreen());
+                                  },
+                                  child: SizedBox(
+                                    height: Adaptive.h(7),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: Adaptive.w(4),
+                                          vertical: Adaptive.h(2)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          buildsTextManrope(
+                                            title: categoryItems[index],
+                                            size: 17.px,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          GestureDetector(
+                                              onTap: () {
+                                                isClicked2.value =
+                                                    !isClicked2.value;
+                                              },
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down)),
+                                        ],
                                       ),
-                                    )
-                                  : SizedBox();
-                            })
-                          ],
-                        );
-                      },
-                      separatorBuilder: (context, index) => buildVspacer(1.h),
-                      itemCount: categoryItems.length),
-                )
+                                    ),
+                                  ),
+                                ),
+                                Obx(() {
+                                  return isClicked2.value
+                                      ? SizedBox(
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                padding: EdgeInsets.all(12.sp),
+                                                decoration: BoxDecoration(
+                                                    color: primarys
+                                                        .withOpacity(0.1)),
+                                                child: Column(
+                                                  children: [
+                                                    buildsTextManrope(
+                                                        title:
+                                                            itemsList2[index],
+                                                        size: 15.px,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        align: true),
+                                                    buildVspacer(1.h),
+                                                    Divider(
+                                                      color: primarys
+                                                          .withOpacity(0.4),
+                                                    )
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                            itemCount: itemsList2.length,
+                                          ),
+                                        )
+                                      : SizedBox();
+                                })
+                              ],
+                            );
+                          },
+                          separatorBuilder: (context, index) =>
+                              buildVspacer(1.h),
+                          itemCount: categoryItems.length),
+                    )
               : SizedBox();
         })
       ],

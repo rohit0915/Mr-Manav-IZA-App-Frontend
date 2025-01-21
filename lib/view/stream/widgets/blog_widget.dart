@@ -59,7 +59,7 @@ class _BlogsWidgetState extends State<BlogsWidget> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
-                    width: Adaptive.w(50),
+                    width: Adaptive.w(45),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black12)),
                     child: Padding(
@@ -77,7 +77,7 @@ class _BlogsWidgetState extends State<BlogsWidget> {
                           // buildVspacer(2.h),
                           buildsTextManrope(
                               title: "Sharad Nanita",
-                              size: 24.px,
+                              size: 20.px,
                               align: true,
                               fontWeight: FontWeight.w500),
                           buildsTextManrope(

@@ -54,21 +54,27 @@ class LoginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: Adaptive.w(4),
-                          vertical: Adaptive.h(1),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.sp),
-                            color: Color(0xff15151533)),
-                        child: Center(
-                          child: Text(
-                            "Skip",
-                            style: GoogleFonts.bitter(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16.px,
-                                color: Colors.white70),
+                      GestureDetector(
+                        onTap: () {
+                          login.isSkip.value = true;
+                          Get.offAll(() => BottomNavigationScreen());
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: Adaptive.w(4),
+                            vertical: Adaptive.h(1),
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.sp),
+                              color: Color(0xff15151533)),
+                          child: Center(
+                            child: Text(
+                              "Skip",
+                              style: GoogleFonts.bitter(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16.px,
+                                  color: Colors.white70),
+                            ),
                           ),
                         ),
                       )
@@ -138,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(height: 24.0),
                           CustomButton(
                             onpress: () {
-                              Get.to(() => BottomNavigationScreen());
+                              Get.offAll(() => BottomNavigationScreen());
                             },
                           ),
                           const SizedBox(height: 16.0),
@@ -182,8 +188,11 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.grey.shade200)),
                                 child: IconButton(
                                   icon: Image.asset(
-                                      'assets/images/login-logo2.png'),
-                                  iconSize: 40,
+                                    'assets/images/login-logo2.png',
+                                    width: Adaptive.w(8),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  // iconSize: 20,
                                   onPressed: () {},
                                 ),
                               ),
@@ -196,8 +205,10 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.grey.shade200)),
                                 child: IconButton(
                                   icon: Image.asset(
-                                      'assets/images/login-logo3.png'),
-                                  iconSize: 40,
+                                    'assets/images/login-logo3.png',
+                                    fit: BoxFit.fill,
+                                    width: Adaptive.w(8),
+                                  ),
                                   onPressed: () {},
                                 ),
                               ),

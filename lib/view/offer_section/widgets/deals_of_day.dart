@@ -58,7 +58,7 @@ SizedBox dealsOfDay() {
                                 style: GoogleFonts.manrope(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16.px,
-                                    decoration: TextDecoration.overline,
+                                    decoration: TextDecoration.lineThrough,
                                     decorationColor: grey,
                                     color: grey),
                               ),

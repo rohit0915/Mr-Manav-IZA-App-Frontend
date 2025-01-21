@@ -265,7 +265,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 ),
                 buildVspacer(2.h),
                 SizedBox(
-                  height: Adaptive.h(34),
+                  height: Adaptive.h(40),
                   child: ListView.separated(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -317,8 +317,8 @@ class _OfferScreenState extends State<OfferScreen> {
                                               style: GoogleFonts.manrope(
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 16.px,
-                                                  decoration:
-                                                      TextDecoration.overline,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
                                                   decorationColor: grey,
                                                   color: grey),
                                             ),
@@ -388,6 +388,18 @@ class _OfferScreenState extends State<OfferScreen> {
                                       ],
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: horizontalPadding,
+                                      child: CustomButton(
+                                        onpress: () {},
+                                        height: 5.h,
+                                        title: "Add to cart",
+                                        textColor: white,
+                                      ),
+                                    ),
+                                  ),
+                                  buildVspacer(1.h),
                                 ],
                               ),
                             ),
@@ -542,5 +554,4 @@ class _OfferScreenState extends State<OfferScreen> {
       ),
     );
   }
-
 }

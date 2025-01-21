@@ -34,6 +34,13 @@ class _StreamScreenState extends State<StreamScreen> {
     _startAutoScroll();
   }
 
+  preCacheimages() {
+    precacheImage(AssetImage('assets/images/stream2.png'), context);
+    precacheImage(AssetImage('assets/images/stream3.png'), context);
+    precacheImage(AssetImage('assets/images/stream4.png'), context);
+    precacheImage(AssetImage('assets/images/stream5.png'), context);
+  }
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -186,7 +193,6 @@ class _StreamScreenState extends State<StreamScreen> {
                 allowImplicitScrolling: true,
                 onPageChanged: (value) {
                   selectedIndex.value = value;
-                 
                 },
                 children: [
                   StreamAllWidget(banner: banner),

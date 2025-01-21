@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/controller/cart_controller.dart';
+import 'package:iza_app/controller/login_controller.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
@@ -19,6 +20,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   final cartController = Get.put(CartController());
+  final login = Get.find<LoginController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,13 +158,17 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               buildVspacer(2.h),
-              mainTitleWidget("Deals Of The Day"),
+              mainTitleWidget("People Also Bought"),
               buildVspacer(2.h),
               delsOfDayMethod(),
               buildVspacer(2.h),
-              mainTitleWidget("People Also Bought"),
+              Obx(() {
+                return login.isSkip.value
+                    ? mainTitleWidget("Deals Of The Day")
+                    : mainTitleWidget("Recently Purchased");
+              }),
               buildVspacer(2.h),
-              delsOfDayMethod()
+              delsOfDayMethod(),
             ],
           ),
         ),
@@ -268,7 +275,7 @@ class CartScreen extends StatelessWidget {
                                   style: GoogleFonts.manrope(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 16.px,
-                                      decoration: TextDecoration.overline,
+                                      decoration: TextDecoration.lineThrough,
                                       decorationColor: grey,
                                       color: grey),
                                 ),
@@ -280,8 +287,8 @@ class CartScreen extends StatelessWidget {
                               ],
                             ),
                             buildVspacer(1.h),
-                            Wrap(
-                              direction: Axis.horizontal,
+                            Row(
+                              // direction: Axis.horizontal,
                               // runSpacing: 2.h,
                               spacing: 3.w,
                               children: [

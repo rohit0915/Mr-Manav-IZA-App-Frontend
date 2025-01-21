@@ -23,7 +23,10 @@ class ChatBotScreen extends StatelessWidget {
           // surfaceTintColor: white,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+               controller.currentIndex.value=0;
+         Get.off(() => BottomNavigationScreen());
+            } 
           ),
           title: Text(
             'Chatbot',

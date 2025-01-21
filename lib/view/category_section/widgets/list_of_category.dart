@@ -5,9 +5,17 @@ List<String> titles=[
   "Brands",
   "Luxe",
   "Gifting",
+  "Makeup Vanity",
   "Everyday Essential"
 ];
 
+List<String> makeupvantityList=[
+  "Silver",
+  "Gold",
+  "Diamond",
+  "International",
+ 
+];
 List<String> categoryItems=[
   "Face",
   "Eyes",

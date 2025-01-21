@@ -125,8 +125,11 @@ class LoginWidget1 extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade200)),
               child: IconButton(
-                icon: Image.asset('assets/images/login-logo2.png'),
-                iconSize: 40,
+                icon: Image.asset('assets/images/login-logo2.png',
+                  width: Adaptive.w(8),
+                                    fit: BoxFit.fill,
+                ),
+          
                 onPressed: () {},
               ),
             ),
@@ -136,8 +139,11 @@ class LoginWidget1 extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade200)),
               child: IconButton(
-                icon: Image.asset('assets/images/login-logo3.png'),
-                iconSize: 40,
+                icon: Image.asset('assets/images/login-logo3.png',
+                  width: Adaptive.w(8),
+                                    fit: BoxFit.fill,
+                ),
+                
                 onPressed: () {},
               ),
             ),
