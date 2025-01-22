@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
+import 'package:iza_app/utilz/certificate_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/cart/cart_screen.dart';
@@ -277,6 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              CertificateWidget(),
             ],
           ),
         ),
@@ -530,6 +532,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       child: GridView.builder(
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: _calculateCrossAxisCount(), // Responsive count
           crossAxisSpacing: 2.w,

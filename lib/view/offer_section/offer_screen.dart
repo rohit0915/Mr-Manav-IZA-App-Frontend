@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/button_widget.dart';
+import 'package:iza_app/utilz/certificate_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/drawer/drawer_screen.dart';
@@ -434,6 +435,7 @@ class _OfferScreenState extends State<OfferScreen> {
                       itemCount: 2),
                 ),
                 buildVspacer(2.h),
+                CertificateWidget(),
               ],
             ),
           ),

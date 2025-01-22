@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/button_widget.dart';
+import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -32,7 +33,7 @@ class WishlistScreen extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: Adaptive.w(3),
             mainAxisSpacing: Adaptive.h(4),
-            childAspectRatio: 0.6,
+            childAspectRatio: 0.55,
           ),
           itemCount: totalIndex.value,
           itemBuilder: (context, index) {
@@ -90,6 +91,18 @@ class WishlistScreen extends StatelessWidget {
                                   size: 12.px,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.lightGreen,
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                ...List.generate(
+                                  4,
+                                  (index) => Icon(Icons.star),
+                                ),
+                                buildsTextManrope(
+                                  title: "(100)",
+                                  color: grey,
                                 )
                               ],
                             ),

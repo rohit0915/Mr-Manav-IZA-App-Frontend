@@ -1,6 +1,4 @@
-
-
-List<String> titles=[
+List<String> titles = [
   "Categories",
   "Brands",
   "Luxe",
@@ -8,15 +6,24 @@ List<String> titles=[
   "Makeup Vanity",
   "Everyday Essential"
 ];
+List<String> categoryCard1 = [
+  "Categories",
+  "Brands",
+];
 
-List<String> makeupvantityList=[
+List<String> categoryCard2 = [
+  "Luxe",
+  "Gifting",
+];
+List<String> categoryCard3 = ["Makeup Vanity", "Everyday Essential"];
+
+List<String> makeupvantityList = [
   "Silver",
   "Gold",
   "Diamond",
   "International",
- 
 ];
-List<String> categoryItems=[
+List<String> categoryItems = [
   "Face",
   "Eyes",
   "Lips",
@@ -25,7 +32,7 @@ List<String> categoryItems=[
   "Multi - Functional Makeup Palette",
   "Makeup Kits and Combos",
 ];
-List<String> itemsList2=[
+List<String> itemsList2 = [
   "Blush ",
   "Bronzer",
   "Compact",

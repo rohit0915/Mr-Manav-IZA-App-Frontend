@@ -11,12 +11,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 SizedBox dealsOfDay() {
   return SizedBox(
-    height: Adaptive.h(43),
+    height: Adaptive.h(45),
     child: ListView.separated(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          RxBool isFavorite=false.obs;
+          RxBool isFavorite = false.obs;
           return Stack(
             children: [
               Container(
@@ -77,7 +77,7 @@ SizedBox dealsOfDay() {
                                   alignment: WrapAlignment.start,
                                   crossAxisAlignment: WrapCrossAlignment.start,
                                   runAlignment: WrapAlignment.start,
-                               
+
                                   spacing: 3.w,
                                   children: [
                                     IntrinsicWidth(
@@ -116,13 +116,25 @@ SizedBox dealsOfDay() {
                                 )
                               : Image.asset('assets/images/offerColor.png'),
                           buildVspacer(1.h),
+                          Row(
+                            children: [
+                              ...List.generate(
+                                4,
+                                (index) => Icon(Icons.star),
+                              ),
+                              buildsTextManrope(title: "(100)", color: grey,)
+                            ],
+                          ),
+                          buildVspacer(1.h),
                           index % 2 == 0
                               ? CustomButton(
                                   onpress: () {},
                                   title: "Add To Cart",
+                                  height: 5.h,
                                 )
                               : CustomButton(
                                   onpress: () {},
+                                  height: 5.h,
                                   title: "Select Shade",
                                 )
                         ],
@@ -133,22 +145,23 @@ SizedBox dealsOfDay() {
               ),
               Positioned(
                 right: 3.w,
-                child: Obx(
-                   () {
-                    return Container(
-                      height: Adaptive.h(6),
-                      padding: EdgeInsets.all(8.sp),
-                      decoration: BoxDecoration(color: grey.withOpacity(0.2)),
-                      child: Center(
-                        child: GestureDetector(
-                           onTap: () {
-                             isFavorite.value=!isFavorite.value;
-                           },
-                          child: Image.asset('assets/images/offerappbar2.png',color: isFavorite.value?Colors.red:null,)),
-                      ),
-                    );
-                  }
-                ),
+                child: Obx(() {
+                  return Container(
+                    height: Adaptive.h(6),
+                    padding: EdgeInsets.all(8.sp),
+                    decoration: BoxDecoration(color: grey.withOpacity(0.2)),
+                    child: Center(
+                      child: GestureDetector(
+                          onTap: () {
+                            isFavorite.value = !isFavorite.value;
+                          },
+                          child: Image.asset(
+                            'assets/images/offerappbar2.png',
+                            color: isFavorite.value ? Colors.red : null,
+                          )),
+                    ),
+                  );
+                }),
               )
             ],
           );
@@ -157,5 +170,3 @@ SizedBox dealsOfDay() {
         itemCount: 2),
   );
 }
-
-

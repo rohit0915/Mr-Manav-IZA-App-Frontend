@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:iza_app/utilz/certificate_widget.dart';
 import 'package:iza_app/view/drawer/drawer_screen.dart';
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +203,9 @@ class _StreamScreenState extends State<StreamScreen> {
                   FaqStreamWidget()
                 ],
               ),
-            )
+            ),
+            buildVspacer(1.h),
+            // CertificateWidget(),
           ],
         ),
       ),
