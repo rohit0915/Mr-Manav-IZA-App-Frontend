@@ -128,7 +128,7 @@ class _StreamScreenState extends State<StreamScreen> {
               style: GoogleFonts.bitter(
                   fontWeight: FontWeight.w400,
                   fontSize: 20.px,
-                  color: grey,
+                  color: black,
                   letterSpacing: 1.w),
             ),
             buildVspacer(1.h),

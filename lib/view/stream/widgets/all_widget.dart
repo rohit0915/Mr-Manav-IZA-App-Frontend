@@ -107,7 +107,7 @@ class StreamAllWidget extends StatelessWidget {
             style: GoogleFonts.bitter(
               fontWeight: FontWeight.w400,
               fontSize: 20.px,
-              color: grey.withOpacity(0.8),
+              color: black,
               letterSpacing: 1.w,
             ),
           ),
@@ -206,7 +206,7 @@ class StreamAllWidget extends StatelessWidget {
               style: GoogleFonts.bitter(
                 fontWeight: FontWeight.w400,
                 fontSize: 20.px,
-                color: grey.withOpacity(0.8),
+                color: black,
                 letterSpacing: 1.w,
               ),
             ),

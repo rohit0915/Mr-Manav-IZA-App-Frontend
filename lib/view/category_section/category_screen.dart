@@ -22,6 +22,14 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   final ScrollController scrollController = ScrollController();
   final RxList<bool> isItemClicked2 = List.filled(6, false).obs;
+  RxBool isShop1 = false.obs;
+  // RxBool isShop2 = false.obs;
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   RxInt selectedIndex = (1).obs;
   @override
@@ -34,22 +42,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
             controller: scrollController,
             child: Column(
               children: [
-                // buildsTextBitter(
-                //     align: true,
-                //     title: "Makeup Vanity",
-                //     color: Colors.grey,
-                //     size: 12.px,
-                //     fontWeight: FontWeight.w400),
-                // buildsTextCormarant(
-                //   title: "Silver >",
-                //   size: 24.px,
-                //   align: true,
-                //   fontWeight: FontWeight.w400,
-                // ),
                 buildVspacer(1.h),
-                Divider(
-                  color: Colors.black45,
-                ),
+                // Divider(
+                //   color: Colors.black45,
+                // ),
                 buildVspacer(2.h),
                 Container(
                   height: Adaptive.h(5),
@@ -87,90 +83,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ],
                 ),
                 buildVspacer(2.h),
-
-                /*   Wrap(
-                    direction: Axis.horizontal,
-                    runSpacing: 1.h,
-                    spacing: 2.w,
-                    children: List.generate(
-                      titles.length,
-                      (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            // Toggle clicked state of the item
-                            if (index == 1) {
-                              Get.to(() => BrandListingScreen());
-                            } else {
-                              isItemClicked[index] = !isItemClicked[index];
-                            }
-                          },
-                          child: Obx(() {
-                            return Column(
-                              children: [
-                                AnimatedContainer(
-                                  width: Adaptive.w(45),
-                                  height: Adaptive.h(20),
-                                  duration: Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                  margin: isItemClicked[index]
-                                      ? EdgeInsets.only(top: 5.h)
-                                      : EdgeInsets.zero,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.sp),
-                                    gradient: LinearGradient(colors: [
-                                      Color.fromARGB(255, 121, 4, 80),
-                                      Color(0xffF8069D),
-                                    ]),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(12.sp),
-                                        child: Text(
-                                          titles[index],
-                                          style: TextStyle(
-                                              fontSize: 19.px,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Image.asset(
-                                          'assets/images/cat$index.png'),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    buildVspacer(1.h),
-                                    Obx(() {
-                                      return isItemClicked[index]
-                                          ? index == 4
-                                              ? makeUpVantityItem()
-                                              : shopCategoryItemMethod()
-                                          : SizedBox();
-                                    })
-                                  ],
-                                ),
-                              ],
-                            );
-                          }),
-                        );
-                      },
-                    )),  */
-
-                /*  GestureDetector(
-                    onTap: () {
-                      // Toggle clicked state of the item
-                      if (0 == 1) {
-                        Get.to(() => BrandListingScreen());
-                      } else {
-                        // isItemClicked[index] = !isItemClicked[index];
-                      }
-                    },
-                    child: ), */
                 SizedBox(
                   height: Adaptive.h(22),
                   child: ListView.separated(
@@ -183,6 +95,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     itemCount: 2,
                   ),
                 ),
+                buildVspacer(1.h),
                 Obx(() {
                   return isItemClicked2[0]
                       ? shopCategoryItemMethod()
@@ -201,6 +114,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     itemCount: 2,
                   ),
                 ),
+                buildVspacer(1.h),
+
                 Obx(() {
                   return isItemClicked2[2] || isItemClicked2[3]
                       ? shopCategoryItemMethod()
@@ -210,6 +125,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 SizedBox(
                   height: Adaptive.h(22),
                   child: ListView.separated(
+                    padding: EdgeInsets.all(0),
                     separatorBuilder: (context, index) => buildHspacer(3.w),
                     itemBuilder: (context, index) {
                       return categoryCardMethod(
@@ -219,13 +135,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     itemCount: 2,
                   ),
                 ),
+                buildVspacer(1.h),
+
                 Obx(() {
                   return isItemClicked2[4] || isItemClicked2[5]
                       ? shopCategoryItemMethod()
                       : SizedBox();
                 }),
                 buildVspacer(2.h),
-                CertificateWidget(),
+                // CertificateWidget(),
               ],
             ),
           ),
@@ -235,28 +153,58 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   Widget categoryCardMethod({required String title, required int index}) {
-    RxBool isItemClicked = false.obs;
+    // RxBool isItemClicked = false.obs;
     return GestureDetector(
       onTap: () {
         if (title == "Brands") {
           Get.to(() => BrandListingScreen());
         } else {
-          isItemClicked.value = !isItemClicked.value;
+          for (int i = 0; i < isItemClicked2.length; i++) {
+            if (isItemClicked2[index]) {
+              continue;
+            } else {
+              isItemClicked2[i] = false;
+            }
+          }
+          // isItemClicked.value = !isItemClicked.value;
           selectedIndex.value = index;
           isItemClicked2[index] = !isItemClicked2[index];
           log("index:$index selected index:$index isitemclicked:${isItemClicked2[index]}");
+          if ((index == 4 && isShop1.value == false) ||
+              (index == 5 && isShop1.value == false)) {
+            print("this if logic");
+
+            Future.delayed(Duration(milliseconds: 300), () {
+              if (scrollController.hasClients) {
+                double targetOffset = scrollController.offset + 200;
+                if ((scrollController.offset - targetOffset).abs() > 10) {
+                  scrollController.animateTo(
+                    targetOffset,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                }
+                isShop1.value = !isShop1.value;
+              }
+            });
+            log("inside if index:$index isShop:$isShop1");
+          } else {
+            isShop1.value = false;
+            log("inside else index:$index isShop:$isShop1");
+          }
         }
       },
       child: Obx(() {
         return AnimatedContainer(
           width: Adaptive.w(45),
-          height: isItemClicked.value ? Adaptive.h(22) : Adaptive.h(20),
+          height: isItemClicked2[index] ? Adaptive.h(22) : Adaptive.h(20),
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          margin:
-              isItemClicked.value ? EdgeInsets.only(top: 5.h) : EdgeInsets.zero,
-          transform: isItemClicked.value
-              ? Matrix4.translationValues(0, -10, 0) // Move the item upward
+          margin: isItemClicked2[index]
+              ? EdgeInsets.only(top: 5.h)
+              : EdgeInsets.zero,
+          transform: isItemClicked2[index]
+              ? Matrix4.translationValues(0, -8, 0) // Move the item upward
               : Matrix4.identity(),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.sp),
@@ -279,7 +227,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Image.asset('assets/images/cat$index.png'),
+              index == 5
+                  ? Image.asset(
+                      'assets/images/cat$index.png',
+                      height: isItemClicked2[index] == true ? 6.h : 10.h,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'assets/images/cat$index.png',
+                    )
             ],
           ),
         );
@@ -341,8 +297,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 
-  SizedBox shopCategoryItemMethod() {
-    return SizedBox(
+  Widget shopCategoryItemMethod() {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: primarys,
+          ),
+          borderRadius: BorderRadius.circular(12.sp)),
       child: ListView.separated(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),

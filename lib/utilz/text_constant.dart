@@ -100,12 +100,12 @@ Row headingWidget(String title1, String title2) {
           title: title1,
           size: 24.px,
           fontWeight: FontWeight.w600,
-          color: Colors.black54),
+          color: Colors.black),
       buildsTextBitter(
           title: title2,
           size: 14.px,
           fontWeight: FontWeight.w600,
-          color: Colors.black54),
+          color: Colors.black),
     ],
   );
 }

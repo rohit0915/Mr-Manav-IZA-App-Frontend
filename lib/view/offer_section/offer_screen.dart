@@ -159,7 +159,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 ),
                 buildVspacer(2.h),
                 SizedBox(
-                  height: Adaptive.h(16),
+                  height: Adaptive.h(30),
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
@@ -167,11 +167,18 @@ class _OfferScreenState extends State<OfferScreen> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          Image.asset('assets/images/offerdeal.png'),
+                          Image.asset(
+                            'assets/images/offers.jpg',
+                            height: Adaptive.h(20),
+                            width: Adaptive.w(70),
+                            fit: BoxFit.cover,
+                          ),
                           buildVspacer(1.h),
                           buildsTextBitter(
-                            title: "MakeUp",
-                            size: 13.px,
+                            title:
+                                "Up to 25% off on modern\nayurvadic skin & air must -\nhaves",
+                            size: 15.px,
+                            align: true,
                             fontWeight: FontWeight.w500,
                           )
                         ],
@@ -235,7 +242,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 ),
                 buildVspacer(2.h),
                 SizedBox(
-                  height: Adaptive.h(25),
+                  height: Adaptive.h(30),
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
@@ -244,7 +251,11 @@ class _OfferScreenState extends State<OfferScreen> {
                       return Column(
                         children: [
                           Image.asset(
-                              'assets/images/brandlogo${index + 1}.png'),
+                            'assets/images/brandlogo${index + 1}.png',
+                            width: Adaptive.w(90),
+                            height: Adaptive.h(25),
+                            fit: BoxFit.cover,
+                          ),
                           buildVspacer(1.h),
                           buildsTextManrope(
                               title: "50% Off",
@@ -465,32 +476,22 @@ class _OfferScreenState extends State<OfferScreen> {
           ),
           buildVspacer(2.h),
           SizedBox(
-            height: Adaptive.h(5),
+            height: Adaptive.h(12),
             child: ListView.separated(
+              separatorBuilder: (context, index) => buildHspacer(2.w),
                 shrinkWrap: true,
+                padding: EdgeInsets.all(8),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 3.sp, horizontal: Adaptive.w(2)),
-                    decoration: BoxDecoration(
-                      color: white,
-                      border: Border.all(
-                        color: primarys,
-                      ),
-                      borderRadius: BorderRadius.circular(8.sp),
-                    ),
-                    child: Center(
-                      child: buildsTextManrope(
-                        title: featureProduct[index],
-                        size: 13.px,
-                        color: primarys,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                  return CircleAvatar(
+                    radius: Adaptive.w(10),
+                    backgroundImage: AssetImage('assets/images/streax1.png'),
+                    // child: Image.asset('assets/images/streax1.png',
+                    // fit: BoxFit.cover,
+                    // ),
                   );
                 },
-                separatorBuilder: (context, index) => buildHspacer(3.w),
+                // separatorBuilder: (context, index) => buildHspacer(3.w),
                 itemCount: featureProduct.length),
           ),
           buildVspacer(2.h),
