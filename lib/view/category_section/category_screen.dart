@@ -8,6 +8,7 @@ import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
 import 'package:iza_app/view/brand_section/brand_screen.dart';
 import 'package:iza_app/view/category_section/filter_section/filter_screen.dart';
+import 'package:iza_app/view/category_section/shop_categories_items/shop_categories_item_screen.dart';
 import 'package:iza_app/view/category_section/widgets/list_of_category.dart';
 import 'package:iza_app/view/product_listing_section/product_listing_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -96,11 +97,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                 ),
                 buildVspacer(1.h),
-                Obx(() {
-                  return isItemClicked2[0]
-                      ? shopCategoryItemMethod()
-                      : SizedBox();
-                }),
+                // Obx(() {
+                //   return isItemClicked2[0]
+                //       ? shopCategoryItemMethod()
+                //       : SizedBox();
+                // }),
                 buildVspacer(1.h),
                 SizedBox(
                   height: Adaptive.h(22),
@@ -116,11 +117,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
                 buildVspacer(1.h),
 
-                Obx(() {
-                  return isItemClicked2[2] || isItemClicked2[3]
-                      ? shopCategoryItemMethod()
-                      : SizedBox();
-                }),
+                // Obx(() {
+                //   return isItemClicked2[2] || isItemClicked2[3]
+                //       ? shopCategoryItemMethod()
+                //       : SizedBox();
+                // }),
                 buildVspacer(1.h),
                 SizedBox(
                   height: Adaptive.h(22),
@@ -136,12 +137,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                 ),
                 buildVspacer(1.h),
-
-                Obx(() {
-                  return isItemClicked2[4] || isItemClicked2[5]
-                      ? shopCategoryItemMethod()
-                      : SizedBox();
-                }),
+                // Obx(() {
+                //   return isItemClicked2[4] || isItemClicked2[5]
+                //       ? shopCategoryItemMethod()
+                //       : SizedBox();
+                // }),
                 buildVspacer(2.h),
                 // CertificateWidget(),
               ],
@@ -159,7 +159,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
         if (title == "Brands") {
           Get.to(() => BrandListingScreen());
         } else {
-          for (int i = 0; i < isItemClicked2.length; i++) {
+          Get.to(() => ShopCategoriesItemScreen(title: title));
+          /* this latest change by client,
+           for (int i = 0; i < isItemClicked2.length; i++) {
             if (isItemClicked2[index]) {
               continue;
             } else {
@@ -191,7 +193,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           } else {
             isShop1.value = false;
             log("inside else index:$index isShop:$isShop1");
-          }
+          } */
         }
       },
       child: Obx(() {

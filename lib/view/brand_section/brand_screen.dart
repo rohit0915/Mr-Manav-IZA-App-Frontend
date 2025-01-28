@@ -80,15 +80,16 @@ class BrandListingScreen extends StatelessWidget {
             buildVspacer(1.h),
             Expanded(
               child: GridView.builder(
+                padding: EdgeInsets.all(0),
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 items per row
+                  crossAxisCount: 3,
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                   childAspectRatio: 8 / 5,
                 ),
-                itemCount: 4,
+                itemCount: 9,
                 itemBuilder: (context, index) {
                   return Image.asset(
                     'assets/images/brandlogo1.png',
@@ -126,12 +127,12 @@ class BrandListingScreen extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 items per row
+                  crossAxisCount: 3, // 2 items per row
                   crossAxisSpacing: 2.w,
                   mainAxisSpacing: 2.h,
                   childAspectRatio: 8 / 5,
                 ),
-                itemCount: 4,
+                itemCount: 9,
                 itemBuilder: (context, index) {
                   return Image.asset(
                     'assets/images/brandlogo2.png',
