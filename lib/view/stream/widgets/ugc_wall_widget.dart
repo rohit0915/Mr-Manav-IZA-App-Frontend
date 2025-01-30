@@ -209,7 +209,7 @@ class UgcWallWidget extends StatelessWidget {
                 Get.to(() => SharePostScreen());
               },
               child: CircleAvatar(
-                radius: 10.w,
+                radius: 8.w,
                 backgroundColor: Colors.pinkAccent,
                 child: Icon(
                   Icons.add,

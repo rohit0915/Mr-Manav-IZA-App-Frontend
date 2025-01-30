@@ -54,6 +54,29 @@ class WriteToUsScreen extends StatelessWidget {
             ),
             SizedBox(height: 2.h),
             buildsTextManrope(
+              title: "Phone Number",
+              size: 16.sp,
+              fontWeight: FontWeight.w500,
+            ),
+            SizedBox(height: 1.h),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Enter your Number",
+                hintStyle:
+                    GoogleFonts.manrope(color: Colors.black26, fontSize: 14.px),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black26)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black12)),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.5.h),
+              ),
+            ),
+            SizedBox(height: 2.h),
+            buildsTextManrope(
               title: "Name",
               size: 16.sp,
               fontWeight: FontWeight.w500,

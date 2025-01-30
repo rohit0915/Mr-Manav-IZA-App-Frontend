@@ -15,14 +15,21 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../login_section/login_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
-  const BottomNavigationScreen({super.key});
-
+  const BottomNavigationScreen({super.key, this.initialIndex = 0});
+  final int initialIndex;
   @override
   State<BottomNavigationScreen> createState() => _BottomNavigationScreenState();
 }
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final controller = Get.put(BottomNavigationController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.currentIndex.value = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +47,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       }),
       bottomNavigationBar: Obx(() {
         return Container(
-        
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
-              
             ),
             boxShadow: [
               BoxShadow(

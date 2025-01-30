@@ -226,7 +226,7 @@ class CartScreen extends StatelessWidget {
 
   SizedBox delsOfDayMethod() {
     return SizedBox(
-      height: Adaptive.h(43),
+      height: Adaptive.h(45),
       child: ListView.separated(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -323,6 +323,19 @@ class CartScreen extends StatelessWidget {
                                           title: "30 ml", color: grey),
                                     ),
                                   ),
+                                )
+                              ],
+                            ),
+                            buildVspacer(1.h),
+                            Row(
+                              children: [
+                                ...List.generate(
+                                  4,
+                                  (index) => Icon(Icons.star),
+                                ),
+                                buildsTextManrope(
+                                  title: "(100)",
+                                  color: grey,
                                 )
                               ],
                             ),

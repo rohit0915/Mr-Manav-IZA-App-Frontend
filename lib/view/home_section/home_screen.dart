@@ -170,12 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     buildVspacer(2.h),
                     Image.asset('assets/images/offer_poster.png'),
                     buildVspacer(2.h),
-                    buildsTextBitter(
+                    /* buildsTextBitter(
                       title: "Offers You will Love",
                       size: 24.px,
                       align: true,
                       fontWeight: FontWeight.w300,
-                    ),
+                    ), */
+                    mainTitleWidget("Offers You will Love"),
                     buildVspacer(2.h),
                     SizedBox(
                       height: Adaptive.h(30),
@@ -445,7 +446,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: Adaptive.h(12),
             child: ListView.separated(
-              separatorBuilder: (context, index) => buildHspacer(2.w),
+                separatorBuilder: (context, index) => buildHspacer(2.w),
                 shrinkWrap: true,
                 padding: EdgeInsets.all(8),
                 scrollDirection: Axis.horizontal,

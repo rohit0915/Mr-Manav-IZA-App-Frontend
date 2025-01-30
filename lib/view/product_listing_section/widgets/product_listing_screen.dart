@@ -111,104 +111,115 @@ class ProductCard extends StatelessWidget {
                             ],
                           )
                         : Image.asset('assets/images/offerColor.png'),
+                    // buildVspacer(1.h),
+                    Row(
+                      children: [
+                        ...List.generate(
+                          4,
+                          (index) => Icon(Icons.star),
+                        ),
+                        buildsTextManrope(
+                          title: "(100)",
+                          color: grey,
+                        )
+                      ],
+                    ),
                     buildVspacer(1.h),
                     Column(
-                        children: [
-                          if (index == 0 ||
-                              index == 1) // For the 1st and 2nd items
-                            index % 2 == 0
-                                ? isSelect.value
-                                    ? Container(
-                                        height: Adaptive.h(6),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12.sp),
-                                          border: Border.all(color: black),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Icon(Icons.add),
-                                            buildsTextManrope(
-                                                title: "1",
-                                                size: 15.px,
-                                                fontWeight: FontWeight.w600),
-                                            Icon(Icons.remove),
-                                          ],
-                                        ),
-                                      )
-                                    : CustomButton(
-                                        onpress: () {
-                                          controller.isItemSelected.value =
-                                              true;
-                                          showSizeBottomSheet(context);
-                                        },
-                                        title: "Select Size",
-                                      )
-                                : isSelect.value
-                                    ? Container(
-                                        height: Adaptive.h(6),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12.sp),
-                                          border: Border.all(color: black),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Icon(Icons.add),
-                                            buildsTextManrope(
-                                                title: "1",
-                                                size: 15.px,
-                                                fontWeight: FontWeight.w600),
-                                            Icon(Icons.remove),
-                                          ],
-                                        ),
-                                      )
-                                    : isSelect.value
-                                        ? Container(
-                                            height: Adaptive.h(6),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12.sp),
-                                              border: Border.all(color: black),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Icon(Icons.add),
-                                                buildsTextManrope(
-                                                    title: "1",
-                                                    size: 15.px,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                                Icon(Icons.remove),
-                                              ],
-                                            ),
-                                          )
-                                        : CustomButton(
-                                            onpress: () {
-                                              // isSelect.value = true;
-                                              controller.isItemSelected.value =
-                                                  true;
-                                              showShadeSelectionBottomSheet(
-                                                  context);
-                                            },
-                                            title: "Select Shade",
-                                          )
-                          else // For all other items
-                            CustomButton(
-                              onpress: () {
-                                // Add to Cart logic
-                                controller.isItemSelected.value = true;
-                              },
-                              title: "Add to Cart",
-                            ),
-                        ],
-                      )
+                      children: [
+                        if (index == 0 ||
+                            index == 1) // For the 1st and 2nd items
+                          index % 2 == 0
+                              ? isSelect.value
+                                  ? Container(
+                                      height: Adaptive.h(6),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(12.sp),
+                                        border: Border.all(color: black),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(Icons.add),
+                                          buildsTextManrope(
+                                              title: "1",
+                                              size: 15.px,
+                                              fontWeight: FontWeight.w600),
+                                          Icon(Icons.remove),
+                                        ],
+                                      ),
+                                    )
+                                  : CustomButton(
+                                      onpress: () {
+                                        controller.isItemSelected.value = true;
+                                        showSizeBottomSheet(context);
+                                      },
+                                      title: "Select Size",
+                                    )
+                              : isSelect.value
+                                  ? Container(
+                                      height: Adaptive.h(6),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(12.sp),
+                                        border: Border.all(color: black),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(Icons.add),
+                                          buildsTextManrope(
+                                              title: "1",
+                                              size: 15.px,
+                                              fontWeight: FontWeight.w600),
+                                          Icon(Icons.remove),
+                                        ],
+                                      ),
+                                    )
+                                  : isSelect.value
+                                      ? Container(
+                                          height: Adaptive.h(6),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12.sp),
+                                            border: Border.all(color: black),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Icon(Icons.add),
+                                              buildsTextManrope(
+                                                  title: "1",
+                                                  size: 15.px,
+                                                  fontWeight: FontWeight.w600),
+                                              Icon(Icons.remove),
+                                            ],
+                                          ),
+                                        )
+                                      : CustomButton(
+                                          onpress: () {
+                                            // isSelect.value = true;
+                                            controller.isItemSelected.value =
+                                                true;
+                                            showShadeSelectionBottomSheet(
+                                                context);
+                                          },
+                                          title: "Select Shade",
+                                        )
+                        else // For all other items
+                          CustomButton(
+                            onpress: () {
+                              // Add to Cart logic
+                              controller.isItemSelected.value = true;
+                            },
+                            title: "Add to Cart",
+                          ),
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -151,12 +151,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 buildVspacer(2.h),
                 Image.asset('assets/images/offer_poster.png'),
                 buildVspacer(3.h),
-                buildsTextBitter(
-                  title: "Offers You will Love",
-                  size: 24.px,
-                  align: true,
-                  fontWeight: FontWeight.w300,
-                ),
+                mainTitleWidget("Offers You will Love"),
                 buildVspacer(2.h),
                 SizedBox(
                   height: Adaptive.h(30),
@@ -189,12 +184,7 @@ class _OfferScreenState extends State<OfferScreen> {
                   ),
                 ),
                 buildVspacer(2.h),
-                buildsTextBitter(
-                  title: "Deals to Steal",
-                  size: 24.px,
-                  align: true,
-                  fontWeight: FontWeight.w300,
-                ),
+                mainTitleWidget("Deals to Steal"),
                 buildVspacer(2.h),
                 SizedBox(
                   height: Adaptive.h(25),
@@ -269,12 +259,7 @@ class _OfferScreenState extends State<OfferScreen> {
                   ),
                 ),
                 buildVspacer(3.h),
-                buildsTextBitter(
-                  title: "Must Haves",
-                  size: 24.px,
-                  align: true,
-                  fontWeight: FontWeight.w300,
-                ),
+                mainTitleWidget("Must Haves"),
                 buildVspacer(2.h),
                 SizedBox(
                   height: Adaptive.h(40),
@@ -478,7 +463,7 @@ class _OfferScreenState extends State<OfferScreen> {
           SizedBox(
             height: Adaptive.h(12),
             child: ListView.separated(
-              separatorBuilder: (context, index) => buildHspacer(2.w),
+                separatorBuilder: (context, index) => buildHspacer(2.w),
                 shrinkWrap: true,
                 padding: EdgeInsets.all(8),
                 scrollDirection: Axis.horizontal,

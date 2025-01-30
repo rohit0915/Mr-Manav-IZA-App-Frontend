@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iza_app/controller/bottom_controller.dart';
 import 'package:iza_app/utilz/app_constants.dart';
 import 'package:iza_app/utilz/app_titile_widget.dart';
 import 'package:iza_app/utilz/colors.dart';
 import 'package:iza_app/utilz/text_constant.dart';
+import 'package:iza_app/view/bottom_navigation/custom_bottom_navigator.dart';
 import 'package:iza_app/view/drawer/notification/notification_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/chat_section/chat_screen.dart';
 import 'package:iza_app/view/drawer/personal_details/quiz_section/quiz_review_answer/quiz.dart';
@@ -14,8 +18,15 @@ import 'package:iza_app/view/stream/stream_video_section/stream_video_screen.dar
 import 'package:iza_app/view/wishlist_section/wishlist_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class ProfileExploreScreen extends StatelessWidget {
+class ProfileExploreScreen extends StatefulWidget {
   const ProfileExploreScreen({super.key});
+
+  @override
+  State<ProfileExploreScreen> createState() => _ProfileExploreScreenState();
+}
+
+class _ProfileExploreScreenState extends State<ProfileExploreScreen> {
+  final controller = Get.find<BottomNavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +76,10 @@ class ProfileExploreScreen extends StatelessWidget {
               profileBuilderMethod(),
               PicksForYouMethod(items),
               dealsOfDay(),
-              buildsTextBitter(
-                title: "Offers You will Love",
-                size: 24.px,
-                align: true,
-                fontWeight: FontWeight.w300,
-              ),
-              buildVspacer(2.h),
+              mainTitleWidget("Offers You will Love"),
+              buildVspacer(1.h),
               SizedBox(
-                height: Adaptive.h(16),
+                height: Adaptive.h(30),
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -81,13 +87,20 @@ class ProfileExploreScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        Image.asset('assets/images/offerdeal.png'),
+                        Image.asset(
+                          'assets/images/offers.jpg',
+                          height: Adaptive.h(20),
+                          width: Adaptive.w(70),
+                          fit: BoxFit.cover,
+                        ),
                         buildVspacer(1.h),
                         buildsTextBitter(
-                          title: "MakeUp",
-                          size: 13.px,
+                          title:
+                              "Up to 25% off on modern\nayurvadic skin & air must -\nhaves",
+                          size: 15.px,
+                          align: true,
                           fontWeight: FontWeight.w500,
-                        ),
+                        )
                       ],
                     );
                   },
@@ -141,6 +154,74 @@ class ProfileExploreScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Obx(() {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          padding: EdgeInsets.symmetric(
+              vertical: Adaptive.h(1.2)), // Padding around Row
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildNavItem('assets/images/bottom0.png', 0, "Home"),
+              _buildNavItem('assets/images/bottom1.png', 1, "Shop"),
+              _buildNavItem('assets/images/bottom2.png', 2, "ChatBot"),
+              _buildNavItem('assets/images/bottom3.png', 3, "Offers"),
+              _buildNavItem('assets/images/bottom4.png', 4, "Stream"),
+            ],
+          ),
+        );
+      }),
+    );
+  }
+
+  Widget _buildNavItem(String assetPath, int index, String title) {
+    return GestureDetector(
+      onTap: () {
+        log("Tapped on item: $index");
+
+        controller.currentIndex.value = index;
+        Get.offAll(() => BottomNavigationScreen(
+              initialIndex: index,
+            ));
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            assetPath,
+            color: controller.currentIndex.value == index
+                ? primarys
+                : Colors.black,
+            height: 24.sp,
+            width: 24.sp,
+          ),
+          buildVspacer(1.h),
+          buildsTextManrope(
+            title: title,
+            size: 11.px,
+            fontWeight: FontWeight.w400,
+            color: controller.currentIndex.value == index
+                ? primarys
+                : Colors.black,
+          )
+          // SizedBox(height: 5), // Space between icon and indicator
+        ],
       ),
     );
   }
